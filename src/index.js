@@ -3,11 +3,17 @@ import {
   createNewDiv,
   setClassAttr,
   addText,
-  addImg,
+  createImg,
+  addBtn,
+  addUl,
+  addLi,
   addEventListClick,
+  removeChildrenNodes,
 } from "./functions/DOMlogic";
 import header from "./pages/header";
+import footer from "./pages/footer";
 import "./styles/header.css";
+// import "./styles/body.css"
 
 // Create Header
 createNewDiv("header", "content");
@@ -19,6 +25,10 @@ header();
 createNewDiv("body", "content");
 setClassAttr("body", "classBody");
 
+allProjects();
+
 // Create Footer
 createNewDiv("footer", "content");
 setClassAttr("footer", "footerBody");
+
+footer();
