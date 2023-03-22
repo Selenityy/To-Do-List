@@ -3,12 +3,17 @@ import {
   createNewDiv,
   setClassAttr,
   addText,
+  addImg,
   addEventListClick,
 } from "./functions/DOMlogic";
+import header from "./pages/header";
+import "./styles/header.css";
 
 // Create Header
 createNewDiv("header", "content");
 setClassAttr("header", "headerBody");
+
+header();
 
 // Create Body
 createNewDiv("body", "content");
