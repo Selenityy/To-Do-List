@@ -1,1 +1,1 @@
-console.log("hello");
+(()=>{"use strict";const e=(e,t)=>{console.log("I have begun");let o=document.getElementById(t),d=document.createElement("div");d.setAttribute("id",e),o.appendChild(d),console.log("I have ended")},t=(e,t)=>{document.getElementById(e).classList.add(t)};e("header","content"),t("header","headerBody"),e("body","content"),t("body","classBody"),e("footer","content"),t("footer","footerBody")})();
