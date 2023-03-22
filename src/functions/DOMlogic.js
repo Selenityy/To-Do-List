@@ -35,6 +35,22 @@ const addBtn = (newBtnId, parentDivId) => {
   parentDiv.appendChild(newBtn);
 };
 
+// Create Ul
+const addUl = (newUlId, parentDivId) => {
+  let parentDiv = document.getElementById(parentDivId);
+  let newUl = document.createElement("ul");
+  ul.setAttribute("id", newUlId);
+  parentDiv.appendChild(newUl);
+};
+
+// Create Li
+const addLi = (newLiId, parentUlId) => {
+  let parentUl = document.getElementById(parentUlId);
+  let newLi = document.createElement("li");
+  li.setAttribute("id", newLiId);
+  parentUl.appendChild(newLi);
+};
+
 // Add Click Event Listeners
 const addEventListClick = (objId, assignedFunc) => {
   let btn = document.getElementById(objId);
@@ -55,6 +71,8 @@ export {
   addText,
   addImg,
   addBtn,
+  addUl,
+  addLi,
   addEventListClick,
   removeChildrenNodes,
 };
