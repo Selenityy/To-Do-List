@@ -1,11 +1,9 @@
 // Create Div with Id Attribute & Append to Parent Div
 const createNewDiv = (newDivId, parentDivId) => {
-  console.log("I have begun");
   let parentDiv = document.getElementById(parentDivId);
   let newDiv = document.createElement("div");
   newDiv.setAttribute("id", newDivId);
   parentDiv.appendChild(newDiv);
-  console.log("I have ended");
 };
 
 // Set Class Attribute
@@ -20,10 +18,19 @@ const addText = (divId, desiredText) => {
   div.textContent = desiredText;
 };
 
+// Create an Img div
+const addImg = (newImgId, parentDivId, imageName) => {
+  let parentDiv = document.getElementById(parentDivId);
+  let newImg = document.createElement("img");
+  newImg.setAttribute("id", newImgId);
+  newImg.src = imageName;
+  parentDiv.appendChild(newImg);
+};
+
 // Add Click Event Listeners
 const addEventListClick = (objId, assignedFunc) => {
   let btn = document.getElementById(objId);
   btn.addEventListener("click", assignedFunc);
 };
 
-export { createNewDiv, setClassAttr, addText, addEventListClick };
+export { createNewDiv, setClassAttr, addText, addImg, addEventListClick };
