@@ -2,7 +2,8 @@ import {
   createNewDiv,
   setClassAttr,
   addText,
-  addImg,
+  createImg,
+  addBtn,
   addEventListClick,
 } from "../functions/DOMlogic";
 import logo from "../assets/logo.png";
@@ -12,7 +13,7 @@ export default function header() {
   createNewDiv("headerElements", "header");
   setClassAttr("headerElements", "headerBody");
 
-  addImg("logo", "headerElements", logo);
+  createImg("logo", "headerElements", logo);
   setClassAttr("logo", "headerBody");
 
   createNewDiv("title", "headerElements");
