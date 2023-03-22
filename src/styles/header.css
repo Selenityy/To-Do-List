@@ -77,11 +77,19 @@ svg {
 #menu {
   grid-area: menu;
   background-color: #bd8b9c;
-  width: 25%;
 }
 
 #mainContent {
   grid-area: content;
   background-color: black;
-  width: 75%;
+}
+
+img {
+    width: 5%;
+}
+
+#allTasks,
+#todayTasks,
+#thisWeekTasks {
+    display: flex;
 }
