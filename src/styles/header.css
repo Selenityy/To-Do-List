@@ -1,0 +1,49 @@
+@font-face {
+  font-family: "Caveat";
+  src: url("../assets/caveat-font.woff");
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  background-color: white;
+}
+
+/* --------- HEADER --------- */
+
+#title {
+  font-family: "Caveat";
+  font-size: 3rem;
+  text-shadow: 1px 1px #adadad;
+}
+
+#logo {
+  width: 4%;
+}
+
+#headerElements {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 1rem;
+  background-color: #ffe8e8;
+  border-bottom: 1px solid #adadad;
+}
