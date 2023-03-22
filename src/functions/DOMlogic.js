@@ -27,10 +27,34 @@ const addImg = (newImgId, parentDivId, imageName) => {
   parentDiv.appendChild(newImg);
 };
 
+// Create button
+const addBtn = (newBtnId, parentDivId) => {
+  let parentDiv = document.getElementById(parentDivId);
+  let newBtn = document.createElement("button");
+  newBtn.setAttribute("id", newBtnId);
+  parentDiv.appendChild(newBtn);
+};
+
 // Add Click Event Listeners
 const addEventListClick = (objId, assignedFunc) => {
   let btn = document.getElementById(objId);
   btn.addEventListener("click", assignedFunc);
 };
 
-export { createNewDiv, setClassAttr, addText, addImg, addEventListClick };
+// Remove the Children Nodes
+const removeChildrenNodes = () => {
+  const body = document.getElementById("body");
+  while (body.firstChild) {
+    body.removeChild(body.lastChild);
+  }
+};
+
+export {
+  createNewDiv,
+  setClassAttr,
+  addText,
+  addImg,
+  addBtn,
+  addEventListClick,
+  removeChildrenNodes,
+};
