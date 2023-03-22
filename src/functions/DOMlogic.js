@@ -19,7 +19,7 @@ const addText = (divId, desiredText) => {
 };
 
 // Create an Img div
-const addImg = (newImgId, parentDivId, imageName) => {
+const createImg = (newImgId, parentDivId, imageName) => {
   let parentDiv = document.getElementById(parentDivId);
   let newImg = document.createElement("img");
   newImg.setAttribute("id", newImgId);
@@ -74,15 +74,23 @@ const addHref = (link, newLinkText, parentDivId) => {
   parentDiv.appendChild(a);
 };
 
+const createPara = (text, parentDivId) => {
+  let parentDiv = document.getElementById(parentDivId);
+  const para = document.createElement("p");
+  para.innerText = text;
+  parentDiv.appendChild(para);
+};
+
 export {
   createNewDiv,
   setClassAttr,
   addText,
-  addImg,
+  createImg,
   addBtn,
   addUl,
   addLi,
   addEventListClick,
   removeChildrenNodes,
   addHref,
+  createPara,
 };
