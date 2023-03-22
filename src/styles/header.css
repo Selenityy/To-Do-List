@@ -23,8 +23,26 @@ svg {
   max-width: 100%;
 }
 
-body {
-  background-color: white;
+#content {
+  display: grid;
+  grid:
+    "header" auto
+    "main" 1fr
+    "footer" auto
+    / 1fr;
+  height: 100%;
+}
+
+#header {
+  grid-area: header;
+}
+
+#body {
+  grid-area: main;
+}
+
+#footer {
+  grid-area: footer;
 }
 
 /* --------- HEADER --------- */
@@ -46,4 +64,24 @@ body {
   padding: 1rem;
   background-color: #ffe8e8;
   border-bottom: 1px solid #adadad;
+}
+
+/* --------- BODY --------- */
+
+#allProjectsPage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "menu content";
+}
+
+#menu {
+  grid-area: menu;
+  background-color: #bd8b9c;
+  width: 25%;
+}
+
+#mainContent {
+  grid-area: content;
+  background-color: black;
+  width: 75%;
 }
