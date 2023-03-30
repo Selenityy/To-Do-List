@@ -10,6 +10,7 @@ import {
   addHref,
   addPara,
   createPara,
+  createHr,
 } from "../../functions/DOMlogic";
 import allTaskImg from "../../assets/all-tasks.png";
 import todayTasksImg from "../../assets/today-tasks.png";
@@ -39,7 +40,9 @@ export default function allProjects() {
   createImg("weekTaskImg", "thisWeekTasks", weekTasksImg);
   createPara("This Week's Tasks", "thisWeekTasks");
 
-  // Menu - Projects
+  createHr("horizontalRuler", "menu");
+
+  // Menu - All Projects
   //   createNewDiv("allProjects", "menu");
   addUl("allProjects", "menu");
   addText("allProjects", "All Projects");
@@ -49,7 +52,7 @@ export default function allProjects() {
   addText("addProject", "+");
   // add code when button is clicked to add li's to the ul of each new project
 
-  // Projects Body Content
+  // Projects Main Body Content
   createNewDiv("mainContent", "allProjectsPage");
   setClassAttr("mainContent", "allProjectsPageContent");
 }
