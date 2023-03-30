@@ -81,6 +81,13 @@ const createPara = (text, parentDivId) => {
   parentDiv.appendChild(para);
 };
 
+const createHr = (hrId, parentDivId) => {
+    let parentDiv = document.getElementById(parentDivId);
+    let hr = document.createElement("hr");
+    hr.setAttribute("id", hrId);
+    parentDiv.appendChild(hr);
+}
+
 export {
   createNewDiv,
   setClassAttr,
@@ -93,4 +100,5 @@ export {
   removeChildrenNodes,
   addHref,
   createPara,
+  createHr,
 };
