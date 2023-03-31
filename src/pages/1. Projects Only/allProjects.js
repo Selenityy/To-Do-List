@@ -59,4 +59,10 @@ export default function allProjects() {
   // Projects Main Body Content
   createNewDiv("mainContent", "allProjectsPage");
   setClassAttr("mainContent", "allProjectsPageContent");
+
+  // Create Modal Div Parent
+  createNewDiv("modalDiv", "mainContent");
+
+  // Create Project Div Parent
+  createNewDiv("newProjectDiv", "mainContent");
 }
