@@ -4,6 +4,7 @@ const createModal = () => {
     <div id="myModal" class="modal">
     <div class="modal_content">
       <span class="close">&times;</span>
+      <form name="myForm" id="myForm" action="" method="GET">
         <ul class="pop_up">
           <li class="title_form">
             <label for="name">Name: </label>
@@ -45,18 +46,21 @@ const createModal = () => {
             <textarea id="notes" name="notes"></textarea>
           </li>
         </ul>
-        <button type="submit" id="submitBtn" value="Click" onclick="modalFunction()">Submit</button>
+        <button type="submit" id="submitBtn" value="Click">Submit</button>
+      </form>
     </div>
   </div>
   `;
   let mainContent = document.getElementById("mainContent");
   mainContent.innerHTML = template;
+
+  let submitBtn = document.getElementById("submitBtn");
+  submitBtn.onclick = function (event) {
+    console.log("HELLO");
+    // form.reset();
+    event.preventDefault();
+    console.log("BYE");
+  };
 };
 
-const modalFunction = (event) => {
-  console.log("HELP");
-  form.reset();
-  event.preventDefault();
-};
-
-export { createModal, modalFunction };
+export { createModal };
