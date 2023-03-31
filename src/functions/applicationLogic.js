@@ -22,4 +22,14 @@ const removeModalForm = () => {
   }
 };
 
-export { removeModalForm };
+// Date Formatter
+const dateFormat = (inputDate, format) => {
+  let dateValue = new Date(inputDate);
+  return dateValue.toLocaleString([], {
+    month: "long",
+    day: "2-digit",
+    year: "numeric",
+  });
+};
+
+export { removeModalForm, dateFormat };
