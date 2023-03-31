@@ -11,10 +11,12 @@ import {
   addPara,
   createPara,
   createHr,
+  createFormBox,
 } from "../../functions/DOMlogic";
 import allTaskImg from "../../assets/all-tasks.png";
 import todayTasksImg from "../../assets/today-tasks.png";
 import weekTasksImg from "../../assets/this-week-task.png";
+import { createModal } from "../../functions/modal";
 
 export default function allProjects() {
   // Projects Page Div within Body
@@ -50,7 +52,9 @@ export default function allProjects() {
   // Add Project Button
   addBtn("addProject", "allProjects");
   addText("addProject", "+");
+
   // add code when button is clicked to add li's to the ul of each new project
+  addEventListClick("addProject", createModal);
 
   // Projects Main Body Content
   createNewDiv("mainContent", "allProjectsPage");
