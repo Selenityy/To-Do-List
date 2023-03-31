@@ -1,4 +1,4 @@
-import { createNewDiv } from "./DOMlogic";
+import { createNewDiv, setClassAttr } from "./DOMlogic";
 import { removeModalForm } from "./applicationLogic";
 
 const createModal = () => {
@@ -74,6 +74,41 @@ const createModal = () => {
     this.notes = notes;
   }
 
+  // Once project is submitted, it adds to the menu page li
+  const addProjectToPage = () => {
+    for (let i = 0; i < myProjects.length; i++) {
+      // Create new divs
+      createNewDiv("newProjectDiv", "mainContent");
+
+      createNewDiv("newProjectName", "newProjectDiv");
+      setClassAttr("newProjectName", "projectNames");
+
+      createNewDiv("newProjectDescription", "newProjectDiv");
+      setClassAttr("newProjectDescription", "projectDescription");
+
+      createNewDiv("newProjectDueDate", "newProjectDiv");
+      setClassAttr("newProjectDueDate", "projectDueDate");
+
+      createNewDiv("newProjectPriority", "newProjectDiv");
+      setClassAttr("newProjectPriority", "projectPriority");
+
+      createNewDiv("newProjectNotes", "newProjectDiv");
+      setClassAttr("newProjectNotes", "projectNotes");
+
+      // Change innerHTML of the divs to the projects array
+      document.getElementsByClassName("projectNames")[i].innerHTML =
+        myProjects[i].name;
+      document.getElementsByClassName("projectDescription")[i].innerHTML =
+        myProjects[i].description;
+      document.getElementsByClassName("projectDueDate")[i].innerHTML =
+        myProjects[i].dueDate;
+      document.getElementsByClassName("projectPriority")[i].innerHTML =
+        myProjects[i].priority;
+      document.getElementsByClassName("projectNotes")[i].innerHTML =
+        myProjects[i].notes;
+    }
+  };
+
   // Submit Btn triggers the following: grabs values, adds to Project Obj
   let submitBtn = document.getElementById("submitBtn");
   submitBtn.onclick = function (event) {
@@ -94,7 +129,8 @@ const createModal = () => {
       formSubmissionNewProjectNotes
     );
     myProjects.push(addProjectObj);
-
+    addProjectToPage();
+    removeModalForm();
     event.preventDefault();
   };
 };
