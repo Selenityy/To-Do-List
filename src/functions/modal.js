@@ -1,5 +1,5 @@
 import { addLi, addUl, createNewDiv, setClassAttr } from "./DOMlogic";
-import { removeModalForm } from "./applicationLogic";
+import { removeModalForm, dateFormat } from "./applicationLogic";
 
 let myProjects = [];
 
@@ -41,9 +41,9 @@ const createModal = () => {
                 <span>Priority Level:</span>
             </label>
             <select id="priority" name="priority">
-                <option value="low">Low Priority</option>
-                <option value="medium">Medium Priority</option>
-                <option value="high">High Priority</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
             </select>
           </li>
           <li class="notes">
@@ -98,15 +98,15 @@ const createModal = () => {
 
       // Change innerHTML of the divs to the projects array
       document.getElementsByClassName("projectNames")[i].innerHTML =
-        myProjects[i].name;
+        "Name: " + myProjects[i].name;
       document.getElementsByClassName("projectDescription")[i].innerHTML =
-        myProjects[i].description;
+        "Description: " + myProjects[i].description;
       document.getElementsByClassName("projectDueDate")[i].innerHTML =
-        myProjects[i].dueDate;
+        "Due Date: " + myProjects[i].dueDate;
       document.getElementsByClassName("projectPriority")[i].innerHTML =
-        myProjects[i].priority;
+        "Priority Level: " + myProjects[i].priority;
       document.getElementsByClassName("projectNotes")[i].innerHTML =
-        myProjects[i].notes;
+        "Notes: " + myProjects[i].notes;
     }
   };
 
@@ -130,8 +130,10 @@ const createModal = () => {
     const formSubmissionNewProjectName = document.getElementById("name").value;
     const formSubmissionNewProjectDescription =
       document.getElementById("description").value;
-    const formSubmissionNewProjectDueDate =
-      document.getElementById("dueDate").value;
+    const formSubmissionNewProjectDueDate = dateFormat(
+      document.getElementById("dueDate").value,
+      "mm-dd-yyyy"
+    );
     const formSubmissionNewProjectPriority =
       document.getElementById("priority").value;
     const formSubmissionNewProjectNotes =
@@ -143,11 +145,11 @@ const createModal = () => {
       formSubmissionNewProjectPriority,
       formSubmissionNewProjectNotes
     );
+    // document.getElementById("dueDate").value;
     myProjects.push(addProjectObj);
     addProjectToPage();
     addProjectToMenu();
     removeModalForm();
-    // event.preventDefault();
   };
 };
 
