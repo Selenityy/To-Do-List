@@ -81,20 +81,20 @@ const createModal = () => {
       let formattedName = myProjects[i].name.replace(/ +/g, "-");
       createNewDiv(formattedName, "newProjectDiv");
 
-      createNewDiv("newProjectName", formattedName);
-      setClassAttr("newProjectName", "projectNames");
+      createNewDiv(`newProjectName${i}`, formattedName);
+      setClassAttr(`newProjectName${i}`, "projectNames");
 
-      createNewDiv("newProjectDescription", formattedName);
-      setClassAttr("newProjectDescription", "projectDescription");
+      createNewDiv(`newProjectDescription${i}`, formattedName);
+      setClassAttr(`newProjectDescription${i}`, "projectDescription");
 
-      createNewDiv("newProjectDueDate", formattedName);
-      setClassAttr("newProjectDueDate", "projectDueDate");
+      createNewDiv(`newProjectDueDate${i}`, formattedName);
+      setClassAttr(`newProjectDueDate${i}`, "projectDueDate");
 
-      createNewDiv("newProjectPriority", formattedName);
-      setClassAttr("newProjectPriority", "projectPriority");
+      createNewDiv(`newProjectPriority${i}`, formattedName);
+      setClassAttr(`newProjectPriority${i}`, "projectPriority");
 
-      createNewDiv("newProjectNotes", formattedName);
-      setClassAttr("newProjectNotes", "projectNotes");
+      createNewDiv(`newProjectNotes${i}`, formattedName);
+      setClassAttr(`newProjectNotes${i}`, "projectNotes");
 
       // Change innerHTML of the divs to the projects array
       document.getElementsByClassName("projectNames")[i].innerHTML =
@@ -107,7 +107,6 @@ const createModal = () => {
         myProjects[i].priority;
       document.getElementsByClassName("projectNotes")[i].innerHTML =
         myProjects[i].notes;
-      console.log(myProjects);
     }
   };
 
