@@ -1,4 +1,4 @@
-import { createNewDiv, setClassAttr } from "./DOMlogic";
+import { addLi, addUl, createNewDiv, setClassAttr } from "./DOMlogic";
 import { removeModalForm } from "./applicationLogic";
 
 let myProjects = [];
@@ -110,6 +110,19 @@ const createModal = () => {
     }
   };
 
+  const addProjectToMenu = () => {
+    document.getElementById("allProjectsList").innerHTML = "";
+    for (let i = 0; i < myProjects.length; i++) {
+      addLi(`liProjectName${i}`, "allProjectsList");
+
+      createNewDiv(`onlyProjectName${i}`, `liProjectName${i}`);
+      setClassAttr(`onlyProjectName${i}`, "menuProjectName");
+
+      document.getElementsByClassName("menuProjectName")[i].innerHTML =
+        myProjects[i].name;
+    }
+  };
+
   // Submit Btn triggers the following: grabs values, adds to Project Obj
   let submitBtn = document.getElementById("submitBtn");
   submitBtn.onclick = function (event) {
@@ -132,6 +145,7 @@ const createModal = () => {
     );
     myProjects.push(addProjectObj);
     addProjectToPage();
+    addProjectToMenu();
     removeModalForm();
     // event.preventDefault();
   };
