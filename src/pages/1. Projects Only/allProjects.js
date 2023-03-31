@@ -45,8 +45,8 @@ export default function allProjects() {
   createHr("horizontalRuler", "menu");
 
   // Menu - All Projects
-  //   createNewDiv("allProjects", "menu");
-  addUl("allProjects", "menu");
+  createNewDiv("allProjects", "menu");
+  //   addUl("allProjects", "menu");
   addText("allProjects", "All Projects");
 
   // Add Project Button
@@ -65,4 +65,6 @@ export default function allProjects() {
 
   // Create Project Div Parent
   createNewDiv("newProjectDiv", "mainContent");
+
+  addUl("allProjectsList", "allProjects");
 }
