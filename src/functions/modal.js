@@ -1,6 +1,8 @@
 import { createNewDiv, setClassAttr } from "./DOMlogic";
 import { removeModalForm } from "./applicationLogic";
 
+let myProjects = [];
+
 const createModal = () => {
   let template = `
     <h2>New Project</h2>
@@ -54,7 +56,6 @@ const createModal = () => {
     </div>
   </div>
   `;
-  createNewDiv("modalDiv", "mainContent");
   let modalDiv = document.getElementById("modalDiv");
   modalDiv.innerHTML = template;
 
@@ -62,8 +63,6 @@ const createModal = () => {
   closeBtn.onclick = function (event) {
     removeModalForm();
   };
-
-  let myProjects = [];
 
   // Project Object Constructor
   function Project(name, description, dueDate, priority, notes) {
@@ -76,23 +75,25 @@ const createModal = () => {
 
   // Once project is submitted, it adds to the menu page li
   const addProjectToPage = () => {
+    document.getElementById("newProjectDiv").innerHTML = "";
     for (let i = 0; i < myProjects.length; i++) {
       // Create new divs
-      createNewDiv("newProjectDiv", "mainContent");
+      let formattedName = myProjects[i].name.replace(/ +/g, "-");
+      createNewDiv(formattedName, "newProjectDiv");
 
-      createNewDiv("newProjectName", "newProjectDiv");
+      createNewDiv("newProjectName", formattedName);
       setClassAttr("newProjectName", "projectNames");
 
-      createNewDiv("newProjectDescription", "newProjectDiv");
+      createNewDiv("newProjectDescription", formattedName);
       setClassAttr("newProjectDescription", "projectDescription");
 
-      createNewDiv("newProjectDueDate", "newProjectDiv");
+      createNewDiv("newProjectDueDate", formattedName);
       setClassAttr("newProjectDueDate", "projectDueDate");
 
-      createNewDiv("newProjectPriority", "newProjectDiv");
+      createNewDiv("newProjectPriority", formattedName);
       setClassAttr("newProjectPriority", "projectPriority");
 
-      createNewDiv("newProjectNotes", "newProjectDiv");
+      createNewDiv("newProjectNotes", formattedName);
       setClassAttr("newProjectNotes", "projectNotes");
 
       // Change innerHTML of the divs to the projects array
@@ -106,12 +107,14 @@ const createModal = () => {
         myProjects[i].priority;
       document.getElementsByClassName("projectNotes")[i].innerHTML =
         myProjects[i].notes;
+      console.log(myProjects);
     }
   };
 
   // Submit Btn triggers the following: grabs values, adds to Project Obj
   let submitBtn = document.getElementById("submitBtn");
   submitBtn.onclick = function (event) {
+    event.preventDefault();
     const formSubmissionNewProjectName = document.getElementById("name").value;
     const formSubmissionNewProjectDescription =
       document.getElementById("description").value;
@@ -131,7 +134,7 @@ const createModal = () => {
     myProjects.push(addProjectObj);
     addProjectToPage();
     removeModalForm();
-    event.preventDefault();
+    // event.preventDefault();
   };
 };
 
