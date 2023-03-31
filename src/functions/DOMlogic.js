@@ -90,50 +90,6 @@ const createHr = (hrId, parentDivId) => {
   parentDiv.appendChild(hr);
 };
 
-
-// Create Modal Form
-const createFormBox = () => {
-  createNewDiv("myModal", "mainContent");
-  createNewDiv("modalContent", "myModal");
-
-  // Create X to close out
-  let span = document.createElement("span");
-  span.setAttribute("class", "close");
-  span.textContent = "&times;";
-  modalContent.appendChild(span);
-
-  // Create Form Box
-  let form = document.createElement("form");
-  form.setAttribute("name", "myForm");
-  form.setAttribute("id", "myForm");
-  form.setAttribute("action", "");
-  form.setAttribute("method", "GET");
-  modalContent.appendChild(form);
-
-  // Create Ul for the Form
-  addUl("popUp", "myForm");
-  setClassAttr("popUp", "popUp");
-
-  // New Li
-  addLi("titleForm", "popUP");
-  setClassAttr("titleForm", "titleForm");
-  // LABEL
-  let label = document.createElement("label");
-  label.setAttribute("for", "title");
-  label.innerHTML = "Title: ";
-  titleForm.appendChild(label);
-  // INPUT
-  let input = document.createElement("input");
-  input.setAttribute("type", "text");
-  input.setAttribute("id", "title");
-  input.setAttribute("name", "title");
-  input.setAttribute("pattern", "^[a-zA-Z0-9_.-]*$");
-  titleForm.appendChild(input);
-
-  // New Li
-  
-};
-
 export {
   createNewDiv,
   setClassAttr,
@@ -147,5 +103,4 @@ export {
   addHref,
   createPara,
   createHr,
-  createFormBox,
 };
