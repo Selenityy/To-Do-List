@@ -22,6 +22,8 @@ const removeModalForm = () => {
   }
 };
 
+// Remove Project
+
 // Date Formatter
 const dateFormat = (inputDate, format) => {
   let dateValue = new Date(inputDate);
