@@ -1,4 +1,12 @@
-import { addLi, addUl, createNewDiv, setClassAttr } from "./DOMlogic";
+import {
+  addBtn,
+  addLi,
+  addText,
+  addUl,
+  createImg,
+  createNewDiv,
+  setClassAttr,
+} from "./DOMlogic";
 import { removeModalForm, dateFormat } from "./applicationLogic";
 
 let myProjects = [];
@@ -81,6 +89,11 @@ const createModal = () => {
       let formattedName = myProjects[i].name.replace(/ +/g, "-");
       createNewDiv(formattedName, "newProjectDiv");
 
+      addBtn(`newProjectCompletedBtn${i}`, formattedName);
+      document
+        .getElementById(`newProjectCompletedBtn${i}`)
+        .classList.add("unchecked");
+
       createNewDiv(`newProjectName${i}`, formattedName);
       setClassAttr(`newProjectName${i}`, "projectNames");
 
@@ -96,9 +109,13 @@ const createModal = () => {
       createNewDiv(`newProjectNotes${i}`, formattedName);
       setClassAttr(`newProjectNotes${i}`, "projectNotes");
 
+      addBtn(`newProjectRemoveBtn${i}`, formattedName);
+      addText(`newProjectRemoveBtn${i}`, "Remove");
+      setClassAttr(`newProjectRemoveBtn${i}`, "removeBtn");
+
       // Change innerHTML of the divs to the projects array
       document.getElementsByClassName("projectNames")[i].innerHTML =
-        "Name: " + myProjects[i].name;
+        myProjects[i].name;
       document.getElementsByClassName("projectDescription")[i].innerHTML =
         "Description: " + myProjects[i].description;
       document.getElementsByClassName("projectDueDate")[i].innerHTML =
@@ -107,6 +124,30 @@ const createModal = () => {
         "Priority Level: " + myProjects[i].priority;
       document.getElementsByClassName("projectNotes")[i].innerHTML =
         "Notes: " + myProjects[i].notes;
+
+      // Mark Project as done
+      let completedBtn = document.getElementById(`newProjectCompletedBtn${i}`);
+      completedBtn.onclick = function (completedEvent) {
+        if (completedEvent.target.classList.contains("unchecked")) {
+          completedEvent.target.classList.remove("unchecked");
+          completedEvent.target.classList.add("checked");
+        } else {
+          completedEvent.target.classList.remove("checked");
+          completedEvent.target.classList.add("unchecked");
+        }
+      };
+
+      // Remove Project Btn
+      let removeBtn = document.getElementById(`newProjectRemoveBtn${i}`);
+      removeBtn.onclick = function (removeEvent) {
+        const deleteProject =
+          removeEvent.target.parentElement.children[1].innerHTML;
+        myProjects = myProjects.filter(
+          (project) => project.name !== deleteProject
+        );
+        addProjectToPage();
+        addProjectToMenu();
+      };
     }
   };
 
