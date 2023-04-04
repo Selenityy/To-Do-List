@@ -9,6 +9,7 @@ module.exports = {
     publicPath: " ",
     assetModuleFilename: "images/[name][ext]",
   },
+  devtool: "eval",
   module: {
     rules: [
       {
