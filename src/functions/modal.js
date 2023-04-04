@@ -13,10 +13,10 @@ let myProjects = [];
 
 const createModal = () => {
   let template = `
-    <h2>New Project</h2>
     <div id="myModal" class="modal">
+    <h2>New Project</h2>
+    <span id="close" class="close">&times;</span>
     <div class="modal_content">
-      <span id="close" class="close">&times;</span>
       <form name="myForm" id="myForm" action="" method="GET">
         <ul class="pop_up">
           <li class="title_form">
@@ -25,6 +25,7 @@ const createModal = () => {
               type="text"
               id="name"
               name="name"
+              required
               pattern="^[a-zA-Z0-9_.-]*$"
             />
           </li>
@@ -49,6 +50,7 @@ const createModal = () => {
                 <span>Priority Level:</span>
             </label>
             <select id="priority" name="priority">
+                <option value="-">-</option>
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
                 <option value="High">High</option>
@@ -59,7 +61,7 @@ const createModal = () => {
             <textarea id="notes" name="notes"></textarea>
           </li>
         </ul>
-        <button type="submit" id="submitBtn" value="Click">Submit</button>
+        <button type="submit" id="submitBtn">Submit</button>
       </form>
     </div>
   </div>
@@ -116,14 +118,29 @@ const createModal = () => {
       // Change innerHTML of the divs to the projects array
       document.getElementsByClassName("projectNames")[i].innerHTML =
         myProjects[i].name;
-      document.getElementsByClassName("projectDescription")[i].innerHTML =
-        "Description: " + myProjects[i].description;
-      document.getElementsByClassName("projectDueDate")[i].innerHTML =
-        "Due Date: " + myProjects[i].dueDate;
-      document.getElementsByClassName("projectPriority")[i].innerHTML =
-        "Priority Level: " + myProjects[i].priority;
-      document.getElementsByClassName("projectNotes")[i].innerHTML =
-        "Notes: " + myProjects[i].notes;
+      if (
+        document.getElementsByClassName("projectDescription")[i].innerHTML !==
+        ""
+      ) {
+        document.getElementsByClassName("projectDescription")[i].innerHTML =
+          "Description: " + myProjects[i].description;
+      }
+      if (
+        document.getElementsByClassName("projectDueDate")[i].innerHTML !== ""
+      ) {
+        document.getElementsByClassName("projectDueDate")[i].innerHTML =
+          "Due Date: " + myProjects[i].dueDate;
+      }
+      if (
+        document.getElementsByClassName("projectPriority")[i].innerHTML !== ""
+      ) {
+        document.getElementsByClassName("projectPriority")[i].innerHTML =
+          "Priority Level: " + myProjects[i].priority;
+      }
+      if (document.getElementsByClassName("projectNotes")[i].innerHTML !== "") {
+        document.getElementsByClassName("projectNotes")[i].innerHTML =
+          "Notes: " + myProjects[i].notes;
+      }
 
       // Mark Project as done
       let completedBtn = document.getElementById(`newProjectCompletedBtn${i}`);
@@ -167,18 +184,29 @@ const createModal = () => {
   // Submit Btn triggers the following: grabs values, adds to Project Obj
   let submitBtn = document.getElementById("submitBtn");
   submitBtn.onclick = function (event) {
+    console.log(myProjects);
     event.preventDefault();
     const formSubmissionNewProjectName = document.getElementById("name").value;
+    if (formSubmissionNewProjectName === "") {
+      return false;
+    }
     const formSubmissionNewProjectDescription =
-      document.getElementById("description").value;
-    const formSubmissionNewProjectDueDate = dateFormat(
-      document.getElementById("dueDate").value,
-      "mm-dd-yyyy"
-    );
+      document.getElementById("description").value === undefined
+        ? ""
+        : document.getElementById("description").value;
+    const formSubmissionNewProjectDueDate =
+      dateFormat(document.getElementById("dueDate").value, "mm-dd-yyyy") ===
+      "Invalid Date"
+        ? ""
+        : dateFormat(document.getElementById("dueDate").value, "mm-dd-yyyy");
     const formSubmissionNewProjectPriority =
-      document.getElementById("priority").value;
+      document.getElementById("priority").value === undefined
+        ? ""
+        : document.getElementById("priority").value;
     const formSubmissionNewProjectNotes =
-      document.getElementById("notes").value;
+      document.getElementById("notes").value === undefined
+        ? ""
+        : document.getElementById("notes").value;
     const addProjectObj = new Project(
       formSubmissionNewProjectName,
       formSubmissionNewProjectDescription,
