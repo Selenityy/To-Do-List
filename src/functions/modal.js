@@ -117,30 +117,32 @@ const createModal = () => {
       setClassAttr(`newProjectRemoveBtn${i}`, "removeBtn");
 
       // Change innerHTML of the divs to the projects array
-      document.getElementsByClassName("projectNames")[i].innerHTML =
+      document.getElementsByClassName("userProjectNames")[i].innerHTML =
         myProjects[i].name;
       if (myProjects[i].description === "") {
-        document.getElementsByClassName("projectDescription")[i].innerHTML = "";
+        document.getElementsByClassName("userProjectDescription")[i].innerHTML =
+          "";
       } else {
-        document.getElementsByClassName("projectDescription")[i].innerHTML =
+        document.getElementsByClassName("userProjectDescription")[i].innerHTML =
           "Description: " + myProjects[i].description;
       }
       if (myProjects[i].dueDate === "") {
-        document.getElementsByClassName("projectDueDate")[i].innerHTML = "";
+        document.getElementsByClassName("userProjectDueDate")[i].innerHTML = "";
       } else {
-        document.getElementsByClassName("projectDueDate")[i].innerHTML =
+        document.getElementsByClassName("userProjectDueDate")[i].innerHTML =
           "Due Date: " + myProjects[i].dueDate;
       }
       if (myProjects[i].priority === "-") {
-        document.getElementsByClassName("projectPriority")[i].innerHTML = "";
+        document.getElementsByClassName("userProjectPriority")[i].innerHTML =
+          "";
       } else {
-        document.getElementsByClassName("projectPriority")[i].innerHTML =
+        document.getElementsByClassName("userProjectPriority")[i].innerHTML =
           "Priority Level: " + myProjects[i].priority;
       }
       if (myProjects[i].notes === "") {
-        document.getElementsByClassName("projectNotes")[i].innerHTML = "";
+        document.getElementsByClassName("userProjectNotes")[i].innerHTML = "";
       } else {
-        document.getElementsByClassName("projectNotes")[i].innerHTML =
+        document.getElementsByClassName("userProjectNotes")[i].innerHTML =
           "Notes: " + myProjects[i].notes;
       }
 
@@ -174,6 +176,7 @@ const createModal = () => {
     document.getElementById("allProjectsList").innerHTML = "";
     for (let i = 0; i < myProjects.length; i++) {
       addLi(`liProjectName${i}`, "allProjectsList");
+      setClassAttr(`liProjectName${i}`, "userProjectLi");
 
       createNewDiv(`onlyProjectName${i}`, `liProjectName${i}`);
       setClassAttr(`onlyProjectName${i}`, "menuProjectName");
