@@ -138,7 +138,7 @@ img {
   padding: 0;
   border: none;
   background: none;
-  margin-left: 45px;
+  margin-left: 75px;
   font-size: 1.5rem;
 }
 
@@ -147,7 +147,7 @@ img {
   border-radius: 12px;
   padding-left: 10px;
   padding-right: 10px;
-  margin-left: 35px;
+  margin-left: 65px;
 }
 
 #allProjectsList {
@@ -156,6 +156,8 @@ img {
   grid-template-columns: auto;
   padding-top: 5px;
   padding-left: 20px;
+  overflow: scroll;
+  inline-size: 250px;
 }
 
 li.userProjectLi {
@@ -175,17 +177,6 @@ li.userProjectLi::before {
   border-radius: 50%;
   background-color: rgb(248, 122, 172);
   margin-right: 8px;
-  /* content: "";
-  display: inline-block;
-  list-style-type: circle; */
-  /* content: "";
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-  background-image: url("../assets/unchecked.png");
-  object-fit: scale-down;
-  background-size: cover;
-  background-repeat: no-repeat; */
 }
 
 .menuProjectName {
@@ -195,7 +186,6 @@ li.userProjectLi::before {
 #mainContent {
   grid-area: content;
   display: flex;
-  /* background-color: #FFFEFC; */
 }
 
 /* --------- MODAL --------- */
@@ -229,7 +219,7 @@ ul.pop_up > li {
   float: right;
   color: black;
   font-size: 2rem;
-  align-self: center;
+  align-self: flex-start;
 }
 
 .close:hover,
