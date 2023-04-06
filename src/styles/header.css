@@ -57,13 +57,13 @@ svg {
 
 /* --------- HEADER --------- */
 
-#title {
+#headerTitle {
   font-family: "Caveat";
   font-size: 3rem;
   text-shadow: 1px 1px #adadad;
 }
 
-#logo {
+#headerLogo {
   width: 4%;
 }
 
@@ -150,6 +150,48 @@ img {
   margin-left: 35px;
 }
 
+#allProjectsList {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: auto;
+  padding-top: 5px;
+  padding-left: 20px;
+}
+
+li.userProjectLi {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-family: "ShantellReg";
+  padding: 5px;
+  list-style-type: disc;
+}
+
+li.userProjectLi::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgb(248, 122, 172);
+  margin-right: 8px;
+  /* content: "";
+  display: inline-block;
+  list-style-type: circle; */
+  /* content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: url("../assets/unchecked.png");
+  object-fit: scale-down;
+  background-size: cover;
+  background-repeat: no-repeat; */
+}
+
+.menuProjectName {
+  padding-left: 10px;
+}
+
 #mainContent {
   grid-area: content;
   display: flex;
@@ -224,7 +266,8 @@ input[type="date"] {
   min-width: 200px;
   padding: 1px 2px;
   font-size: 1.2rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "ShantellReg";
+  /* font-family: Arial, Helvetica, sans-serif; */
 }
 
 #submitBtn {
