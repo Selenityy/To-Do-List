@@ -13,10 +13,10 @@ export default function header() {
   createNewDiv("headerElements", "header");
   setClassAttr("headerElements", "headerBody");
 
-  createImg("logo", "headerElements", logo);
-  setClassAttr("logo", "headerBody");
+  createImg("headerLogo", "headerElements", logo);
+  setClassAttr("headerLogo", "headerBody");
 
-  createNewDiv("title", "headerElements");
-  setClassAttr("title", "headerBody");
-  addText("title", "To-Do List");
+  createNewDiv("headerTitle", "headerElements");
+  setClassAttr("headerTitle", "headerBody");
+  addText("headerTitle", "To-Do List");
 }
