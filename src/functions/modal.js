@@ -118,26 +118,27 @@ const createModal = () => {
       // Change innerHTML of the divs to the projects array
       document.getElementsByClassName("projectNames")[i].innerHTML =
         myProjects[i].name;
-      if (
-        document.getElementsByClassName("projectDescription")[i].innerHTML !==
-        ""
-      ) {
+      if (myProjects[i].description === "") {
+        document.getElementsByClassName("projectDescription")[i].innerHTML = "";
+      } else {
         document.getElementsByClassName("projectDescription")[i].innerHTML =
           "Description: " + myProjects[i].description;
       }
-      if (
-        document.getElementsByClassName("projectDueDate")[i].innerHTML !== ""
-      ) {
+      if (myProjects[i].dueDate === "") {
+        document.getElementsByClassName("projectDueDate")[i].innerHTML = "";
+      } else {
         document.getElementsByClassName("projectDueDate")[i].innerHTML =
           "Due Date: " + myProjects[i].dueDate;
       }
-      if (
-        document.getElementsByClassName("projectPriority")[i].innerHTML !== ""
-      ) {
+      if (myProjects[i].priority === "-") {
+        document.getElementsByClassName("projectPriority")[i].innerHTML = "";
+      } else {
         document.getElementsByClassName("projectPriority")[i].innerHTML =
           "Priority Level: " + myProjects[i].priority;
       }
-      if (document.getElementsByClassName("projectNotes")[i].innerHTML !== "") {
+      if (myProjects[i].notes === "") {
+        document.getElementsByClassName("projectNotes")[i].innerHTML = "";
+      } else {
         document.getElementsByClassName("projectNotes")[i].innerHTML =
           "Notes: " + myProjects[i].notes;
       }
