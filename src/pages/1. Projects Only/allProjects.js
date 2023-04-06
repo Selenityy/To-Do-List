@@ -67,4 +67,5 @@ export default function allProjects() {
   createNewDiv("newProjectDiv", "mainContent");
 
   addUl("allProjectsList", "allProjects");
+  setClassAttr("allProjectsList", "allProjectsListClass");
 }
