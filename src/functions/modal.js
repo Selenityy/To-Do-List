@@ -90,6 +90,7 @@ const createModal = () => {
       // Create new divs
       let formattedName = myProjects[i].name.replace(/ +/g, "-");
       createNewDiv(formattedName, "newProjectDiv");
+      setClassAttr(formattedName, "userProjectList");
 
       addBtn(`newProjectCompletedBtn${i}`, formattedName);
       document
@@ -97,19 +98,19 @@ const createModal = () => {
         .classList.add("unchecked");
 
       createNewDiv(`newProjectName${i}`, formattedName);
-      setClassAttr(`newProjectName${i}`, "projectNames");
+      setClassAttr(`newProjectName${i}`, "userProjectNames");
 
       createNewDiv(`newProjectDescription${i}`, formattedName);
-      setClassAttr(`newProjectDescription${i}`, "projectDescription");
+      setClassAttr(`newProjectDescription${i}`, "userProjectDescription");
 
       createNewDiv(`newProjectDueDate${i}`, formattedName);
-      setClassAttr(`newProjectDueDate${i}`, "projectDueDate");
+      setClassAttr(`newProjectDueDate${i}`, "userProjectDueDate");
 
       createNewDiv(`newProjectPriority${i}`, formattedName);
-      setClassAttr(`newProjectPriority${i}`, "projectPriority");
+      setClassAttr(`newProjectPriority${i}`, "userProjectPriority");
 
       createNewDiv(`newProjectNotes${i}`, formattedName);
-      setClassAttr(`newProjectNotes${i}`, "projectNotes");
+      setClassAttr(`newProjectNotes${i}`, "userProjectNotes");
 
       addBtn(`newProjectRemoveBtn${i}`, formattedName);
       addText(`newProjectRemoveBtn${i}`, "Remove");
