@@ -186,14 +186,15 @@ li.userProjectLi::before {
 #mainContent {
   grid-area: content;
   display: flex;
-  position: absolute;
-  z-index: 1;
+  flex-wrap: wrap;
+  /* position: absolute;
+  z-index: 1; */
 }
 
 .userProjectList {
   display: grid;
   grid-template-columns: repeat(2, auto);
-  grid-template-rows: repeat(6, auto);
+  grid-template-rows: repeat(6, min-content);
   grid-template-areas:
     "box button"
     "projectTitle projectTitle"
@@ -204,7 +205,10 @@ li.userProjectLi::before {
   background-color: white;
   border-radius: 8px;
   margin-left: 35px;
+  margin-bottom: 35px;
   filter: drop-shadow(17px 10px 3px rgba(248, 122, 172, 0.5));
+  width: 300px;
+  height: 200px;
 }
 
 .userProjectNames {
@@ -237,10 +241,12 @@ li.userProjectLi::before {
 }
 
 #newProjectDiv {
-  margin-left: 315px;
+  margin-left: 20px;
   margin-top: 20px;
   display: grid;
-  grid-auto-flow: column;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(4, 400px);
+  grid-template-rows: repeat(4, 275px);
 }
 
 .unchecked {
@@ -287,7 +293,7 @@ li.userProjectLi::before {
 
 #modalDiv {
   margin-top: 20px;
-  margin-left: 350px;
+  margin-left: 45px;
   position: absolute;
   z-index: 1;
 }
