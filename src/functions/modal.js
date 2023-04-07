@@ -97,6 +97,10 @@ const createModal = () => {
         .getElementById(`newProjectCompletedBtn${i}`)
         .classList.add("unchecked");
 
+      addBtn(`newProjectRemoveBtn${i}`, formattedName);
+      addText(`newProjectRemoveBtn${i}`, "X");
+      setClassAttr(`newProjectRemoveBtn${i}`, "removeBtn");
+
       createNewDiv(`newProjectName${i}`, formattedName);
       setClassAttr(`newProjectName${i}`, "userProjectNames");
 
@@ -112,9 +116,9 @@ const createModal = () => {
       createNewDiv(`newProjectNotes${i}`, formattedName);
       setClassAttr(`newProjectNotes${i}`, "userProjectNotes");
 
-      addBtn(`newProjectRemoveBtn${i}`, formattedName);
-      addText(`newProjectRemoveBtn${i}`, "Remove");
-      setClassAttr(`newProjectRemoveBtn${i}`, "removeBtn");
+      //   addBtn(`newProjectRemoveBtn${i}`, formattedName);
+      //   addText(`newProjectRemoveBtn${i}`, "Remove");
+      //   setClassAttr(`newProjectRemoveBtn${i}`, "removeBtn");
 
       // Change innerHTML of the divs to the projects array
       document.getElementsByClassName("userProjectNames")[i].innerHTML =
@@ -162,7 +166,8 @@ const createModal = () => {
       let removeBtn = document.getElementById(`newProjectRemoveBtn${i}`);
       removeBtn.onclick = function (removeEvent) {
         const deleteProject =
-          removeEvent.target.parentElement.children[1].innerHTML;
+          removeEvent.target.parentElement.children[2].innerHTML;
+        console.log(removeEvent.target.parentElement.children[2].innerHTML);
         myProjects = myProjects.filter(
           (project) => project.name !== deleteProject
         );
