@@ -186,13 +186,110 @@ li.userProjectLi::before {
 #mainContent {
   grid-area: content;
   display: flex;
+  position: absolute;
+  z-index: 1;
+}
+
+.userProjectList {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(6, auto);
+  grid-template-areas:
+    "box button"
+    "projectTitle projectTitle"
+    "projectDescription projectDescription"
+    "projectDueDate projectDueDate"
+    "projectPriority projectPriority"
+    "projectNotes projectNotes";
+  background-color: white;
+  border-radius: 8px;
+  margin-left: 35px;
+  filter: drop-shadow(17px 10px 3px rgba(248, 122, 172, 0.5));
+}
+
+.userProjectNames {
+  grid-area: projectTitle;
+}
+
+.userProjectDescription {
+  grid-area: projectDescription;
+}
+
+.userProjectDueDate {
+  grid-area: projectDueDate;
+}
+
+.userProjectPriority {
+  grid-area: projectPriority;
+}
+
+.userProjectNotes {
+  grid-area: projectNotes;
+}
+
+.userProjectNotes,
+.userProjectNames,
+.userProjectDescription,
+.userProjectDueDate,
+.userProjectPriority,
+.userProjectNotes {
+  font-family: "ShantellReg";
+}
+
+#newProjectDiv {
+  margin-left: 315px;
+  margin-top: 20px;
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.unchecked {
+  grid-area: box;
+  background-image: url(../assets/unchecked.png);
+  height: 30px;
+  width: 30px;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  background-repeat: no-repeat;
+  justify-self: start;
+}
+
+.checked {
+  grid-area: box;
+  background-image: url(../assets//logo.png);
+  height: 27px;
+  width: 27px;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  background-repeat: no-repeat;
+  justify-self: start;
+}
+
+.removeBtn {
+  grid-area: button;
+  /* background-color: #f992bb; */
+  background-color: white;
+  border-radius: 8px;
+  font-family: "ShantellReg";
+  font-size: 1rem;
+  /* padding: 5px;
+  margin-top: 10px; */
+  /* border: 2px solid black; */
+  border: none;
+  width: 25px;
+  height: 25px;
+  justify-self: end;
 }
 
 /* --------- MODAL --------- */
 
 #modalDiv {
-  margin-top: 25px;
-  margin-left: 50px;
+  margin-top: 20px;
+  margin-left: 350px;
+  position: absolute;
+  z-index: 1;
 }
 
 #myModal {
@@ -208,6 +305,7 @@ li.userProjectLi::before {
   padding: 0px 10px 10px 5px;
   overflow: auto;
   background-color: white;
+  width: max-content;
 }
 
 ul.pop_up > li {
@@ -275,18 +373,6 @@ input[type="date"] {
   box-shadow: 0 5px #adadad;
   transform: translateY(5px);
   transition-duration: 0.4s;
-}
-
-.unchecked {
-  background-image: url(../assets/unchecked.png);
-  height: 60px;
-  width: 60px;
-}
-
-.checked {
-  background-image: url(../assets//logo.png);
-  height: 60px;
-  width: 60px;
 }
 
 /* --------- FOOTER --------- */
