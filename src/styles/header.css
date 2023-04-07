@@ -193,8 +193,8 @@ li.userProjectLi::before {
 
 .userProjectList {
   display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: repeat(6, min-content);
+  grid-template-columns: repeat(2, 160px);
+  grid-template-rows: 40px repeat(5, auto);
   grid-template-areas:
     "box button"
     "projectTitle projectTitle"
@@ -206,9 +206,14 @@ li.userProjectLi::before {
   border-radius: 8px;
   margin-left: 35px;
   margin-bottom: 35px;
-  filter: drop-shadow(17px 10px 3px rgba(248, 122, 172, 0.5));
-  width: 300px;
-  height: 200px;
+  margin-top: 5px;
+  /* filter: drop-shadow(17px 10px 3px rgba(248, 122, 172, 0.5)); */
+  width: 350px;
+  height: 250px;
+  outline: 1px solid black;
+  border: 4px dashed rgba(248, 122, 172, 0.7);
+  outline-offset: 3px;
+  padding: 10px;
 }
 
 .userProjectNames {
@@ -246,7 +251,7 @@ li.userProjectLi::before {
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: repeat(4, 400px);
-  grid-template-rows: repeat(4, 275px);
+  grid-template-rows: repeat(4, 300px);
 }
 
 .unchecked {
