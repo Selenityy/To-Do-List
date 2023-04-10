@@ -156,9 +156,13 @@ const createModal = () => {
         if (completedEvent.target.classList.contains("unchecked")) {
           completedEvent.target.classList.remove("unchecked");
           completedEvent.target.classList.add("checked");
+          let title = document.getElementById(`onlyProjectName${i}`);
+          title.style.setProperty("text-decoration", "line-through");
         } else {
           completedEvent.target.classList.remove("checked");
           completedEvent.target.classList.add("unchecked");
+          let title = document.getElementById(`onlyProjectName${i}`);
+          title.style.setProperty("text-decoration", "none");
         }
       };
 
