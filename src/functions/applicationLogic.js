@@ -22,8 +22,6 @@ const removeModalForm = () => {
   }
 };
 
-// Remove Project
-
 // Date Formatter
 const dateFormat = (inputDate, format) => {
   let dateValue = new Date(inputDate);
@@ -33,5 +31,10 @@ const dateFormat = (inputDate, format) => {
     year: "numeric",
   });
 };
+
+// Saves project and To-Dos every time a new project is created
+
+
+// looks for that data in localStorage when your app is first loaded
 
 export { removeModalForm, dateFormat };

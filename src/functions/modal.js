@@ -6,6 +6,7 @@ import {
   createImg,
   createNewDiv,
   setClassAttr,
+  setItemStorage,
 } from "./DOMlogic";
 import { removeModalForm, dateFormat } from "./applicationLogic";
 
@@ -230,10 +231,14 @@ const createModal = () => {
     );
     // document.getElementById("dueDate").value;
     myProjects.push(addProjectObj);
+
+    console.log("HELLO" + myProjects);
+    localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
+
     addProjectToPage();
     addProjectToMenu();
     removeModalForm();
   };
 };
 
-export { createModal };
+export { createModal, };
