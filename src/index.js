@@ -1,5 +1,5 @@
 import allProjects from "./pages/allProjects";
-import { addProjectToPage } from "./functions/modal";
+import { addProjectToMenu, addProjectToPage } from "./functions/modal";
 import { createNewDiv, setClassAttr } from "./functions/DOMlogic";
 import header from "./pages/header";
 import footer from "./pages/footer";
@@ -26,3 +26,4 @@ footer();
 
 const currentProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
 addProjectToPage(currentProjects);
+addProjectToMenu(currentProjects);
