@@ -80,6 +80,7 @@ const createModal = () => {
     this.dueDate = dueDate;
     this.priority = priority;
     this.notes = notes;
+    this.completed = false;
   }
 
   // removed the addProjectsToPage & addProjectToMenu function from here
@@ -190,17 +191,25 @@ const addProjectToPage = (projectList) => {
     // Mark Project as done
     let completedBtn = document.getElementById(`newProjectCompletedBtn${i}`);
     completedBtn.onclick = function (completedEvent) {
+      let completedProjectName = completedEvent.target.parentElement.id;
+      let result = myProjects.find(
+        (project) => project.name === completedProjectName
+      );
       if (completedEvent.target.classList.contains("unchecked")) {
         completedEvent.target.classList.remove("unchecked");
         completedEvent.target.classList.add("checked");
+        result.completed = true;
         let title = document.getElementById(`onlyProjectName${i}`);
         title.style.setProperty("text-decoration", "line-through");
       } else {
         completedEvent.target.classList.remove("checked");
         completedEvent.target.classList.add("unchecked");
+        result.completed = false;
         let title = document.getElementById(`onlyProjectName${i}`);
         title.style.setProperty("text-decoration", "none");
       }
+      localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
+      console.log(myProjects);
     };
 
     // Remove Project Btn
