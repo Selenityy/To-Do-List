@@ -212,8 +212,9 @@ const addProjectToPage = (projectList) => {
       myProjects = projectList.filter(
         (project) => project.name !== deleteProject
       );
-      addProjectToPage();
-      addProjectToMenu();
+      localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
+      addProjectToPage(myProjects);
+      addProjectToMenu(myProjects);
     };
   }
 };
