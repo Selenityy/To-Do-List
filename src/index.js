@@ -1,15 +1,6 @@
-import allProjects from "./pages/1. Projects Only/allProjects";
-import {
-  createNewDiv,
-  setClassAttr,
-  addText,
-  createImg,
-  addBtn,
-  addUl,
-  addLi,
-  addEventListClick,
-  removeChildrenNodes,
-} from "./functions/DOMlogic";
+import allProjects from "./pages/allProjects";
+import { addProjectToPage } from "./functions/modal";
+import { createNewDiv, setClassAttr } from "./functions/DOMlogic";
 import header from "./pages/header";
 import footer from "./pages/footer";
 import "./styles/header.css";
@@ -32,3 +23,6 @@ createNewDiv("footer", "content");
 setClassAttr("footer", "footerBody");
 
 footer();
+
+const currentProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
+addProjectToPage(currentProjects);
