@@ -8,7 +8,7 @@ import {
 } from "./DOMlogic";
 import { removeModalForm, dateFormat } from "./applicationLogic";
 
-let myProjects = [];
+let myProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
 
 const createModal = () => {
   let template = `
@@ -82,21 +82,7 @@ const createModal = () => {
     this.notes = notes;
   }
 
-  // Once project is submitted, it adds to the menu page li, copy it here again later
-
-  const addProjectToMenu = () => {
-    document.getElementById("allProjectsList").innerHTML = "";
-    for (let i = 0; i < myProjects.length; i++) {
-      addLi(`liProjectName${i}`, "allProjectsList");
-      setClassAttr(`liProjectName${i}`, "userProjectLi");
-
-      createNewDiv(`onlyProjectName${i}`, `liProjectName${i}`);
-      setClassAttr(`onlyProjectName${i}`, "menuProjectName");
-
-      document.getElementsByClassName("menuProjectName")[i].innerHTML =
-        myProjects[i].name;
-    }
-  };
+  // removed the addProjectsToPage & addProjectToMenu function from here
 
   // Submit Btn triggers the following: grabs values, adds to Project Obj
   let submitBtn = document.getElementById("submitBtn");
@@ -131,20 +117,16 @@ const createModal = () => {
       formSubmissionNewProjectPriority,
       formSubmissionNewProjectNotes
     );
-    // document.getElementById("dueDate").value;
     myProjects.push(addProjectObj);
     addProjectToPage(myProjects);
+    addProjectToMenu(myProjects);
 
-    console.log("HELLO" + myProjects);
     localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
-
-    addProjectToMenu();
     removeModalForm();
   };
 };
 
 const addProjectToPage = (projectList) => {
-  console.log("MEW" + projectList);
   document.getElementById("newProjectDiv").innerHTML = "";
   for (let i = 0; i < projectList.length; i++) {
     // Create new divs
@@ -236,4 +218,18 @@ const addProjectToPage = (projectList) => {
   }
 };
 
-export { createModal, addProjectToPage };
+const addProjectToMenu = (projectList) => {
+  document.getElementById("allProjectsList").innerHTML = "";
+  for (let i = 0; i < projectList.length; i++) {
+    addLi(`liProjectName${i}`, "allProjectsList");
+    setClassAttr(`liProjectName${i}`, "userProjectLi");
+
+    createNewDiv(`onlyProjectName${i}`, `liProjectName${i}`);
+    setClassAttr(`onlyProjectName${i}`, "menuProjectName");
+
+    document.getElementsByClassName("menuProjectName")[i].innerHTML =
+      projectList[i].name;
+  }
+};
+
+export { createModal, addProjectToPage, addProjectToMenu };
