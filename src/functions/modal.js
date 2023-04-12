@@ -85,9 +85,22 @@ const createModal = () => {
   submitBtn.onclick = function (event) {
     event.preventDefault();
     const formSubmissionNewProjectName = document.getElementById("name").value;
+    let newTitle = formSubmissionNewProjectName.replace(/[\s:;,.\-]+/g, "");
     if (formSubmissionNewProjectName === "") {
+      alert("Please fill in a title.");
       return false;
     }
+    for (let t = 0; t < myProjects.length; t++) {
+      let projectNameInArray = myProjects[t].name.replace(/[\s:;,.\-]+/g, "");
+      if (
+        formSubmissionNewProjectName === projectNameInArray ||
+        newTitle === projectNameInArray
+      ) {
+        alert("Please use a unique title.");
+        return false;
+      }
+    }
+
     const formSubmissionNewProjectDescription =
       document.getElementById("description").value === undefined
         ? ""
