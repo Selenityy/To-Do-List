@@ -36,17 +36,6 @@ const dateFormat = (inputDate, format) => {
   });
 };
 
-// Duplicate Title
-// const checkDuplicateTitle = (newTitle, newTitleStr) => {
-//   console.log(newTitle, newTitleStr);
-//   for (let t = 0; t < myProjects.length; t++) {
-//     if (myProjects[t].name === newTitle || newTitleStr) {
-//       alert("Please use a unique title.");
-//       return false;
-//     }
-//   }
-// };
-
 // Adds a project to the menu
 const addProjectToMenu = (projectList) => {
   document.getElementById("allProjectsList").innerHTML = "";
@@ -172,7 +161,9 @@ const addProjectToPage = (projectList) => {
   }
 };
 
-const oneProjectView = () => {};
+const oneProjectView = () => {
+  console.log("HELLO ");
+};
 
 export {
   removeModalForm,
