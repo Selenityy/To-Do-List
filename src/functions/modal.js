@@ -1,12 +1,4 @@
 import {
-  addBtn,
-  addLi,
-  addText,
-  createImg,
-  createNewDiv,
-  setClassAttr,
-} from "./DOMlogic";
-import {
   removeModalForm,
   dateFormat,
   addProjectToMenu,

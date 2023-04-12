@@ -57,6 +57,11 @@ const addEventListClick = (objId, assignedFunc) => {
   btn.addEventListener("click", assignedFunc);
 };
 
+const addEventListClickWithClass = (objClass, assignedFunc) => {
+  let buttons = document.querySelectorAll(objClass);
+  buttons.addEventListener("click", assignedFunc);
+};
+
 // Remove the Children Nodes
 const removeChildrenNodes = () => {
   const body = document.getElementById("body");
@@ -103,4 +108,5 @@ export {
   addHref,
   createPara,
   createHr,
+  addEventListClickWithClass,
 };

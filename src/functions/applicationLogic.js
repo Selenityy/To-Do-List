@@ -1,12 +1,5 @@
 import { myProjects } from "./modal";
-import {
-  addBtn,
-  addLi,
-  addText,
-  createImg,
-  createNewDiv,
-  setClassAttr,
-} from "./DOMlogic";
+import { addBtn, addLi, addText, createNewDiv, setClassAttr } from "./DOMlogic";
 
 // Create Tasks
 
@@ -165,9 +158,5 @@ const addProjectToPage = (projectList) => {
     };
   }
 };
-
-// Saves project and To-Dos every time a new project is created
-
-// looks for that data in localStorage when your app is first loaded
 
 export { removeModalForm, dateFormat, addProjectToMenu, addProjectToPage };
