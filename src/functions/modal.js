@@ -136,9 +136,11 @@ const addProjectToPage = (projectList) => {
     setClassAttr(formattedName, "userProjectList");
 
     addBtn(`newProjectCompletedBtn${i}`, formattedName);
+    let projectCompletionCheck =
+      projectList[i].completed === true ? "checked" : "unchecked";
     document
       .getElementById(`newProjectCompletedBtn${i}`)
-      .classList.add("unchecked");
+      .classList.add(projectCompletionCheck);
 
     addBtn(`newProjectRemoveBtn${i}`, formattedName);
     addText(`newProjectRemoveBtn${i}`, "X");
@@ -239,6 +241,13 @@ const addProjectToMenu = (projectList) => {
 
     document.getElementsByClassName("menuProjectName")[i].innerHTML =
       projectList[i].name;
+    if (projectList[i].completed === true) {
+      let title = document.getElementById(`onlyProjectName${i}`);
+      title.style.setProperty("text-decoration", "line-through");
+    } else {
+      let title = document.getElementById(`onlyProjectName${i}`);
+      title.style.setProperty("text-decoration", "none");
+    }
   }
 };
 
