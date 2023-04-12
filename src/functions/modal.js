@@ -83,12 +83,9 @@ const createModal = () => {
     this.completed = false;
   }
 
-  // removed the addProjectsToPage & addProjectToMenu function from here
-
   // Submit Btn triggers the following: grabs values, adds to Project Obj
   let submitBtn = document.getElementById("submitBtn");
   submitBtn.onclick = function (event) {
-    console.log(myProjects);
     event.preventDefault();
     const formSubmissionNewProjectName = document.getElementById("name").value;
     if (formSubmissionNewProjectName === "") {
@@ -211,7 +208,6 @@ const addProjectToPage = (projectList) => {
         title.style.setProperty("text-decoration", "none");
       }
       localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
-      console.log(myProjects);
     };
 
     // Remove Project Btn
@@ -219,7 +215,6 @@ const addProjectToPage = (projectList) => {
     removeBtn.onclick = function (removeEvent) {
       const deleteProject =
         removeEvent.target.parentElement.children[2].innerHTML;
-      console.log(removeEvent.target.parentElement.children[2].innerHTML);
       myProjects = projectList.filter(
         (project) => project.name !== deleteProject
       );
