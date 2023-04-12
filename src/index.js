@@ -2,11 +2,12 @@ import allProjects from "./pages/allProjects";
 import {
   addProjectToMenu,
   addProjectToPage,
+  oneProjectView,
 } from "./functions/applicationLogic";
 import { createNewDiv, setClassAttr } from "./functions/DOMlogic";
 import header from "./pages/header";
 import footer from "./pages/footer";
-import "./styles/header.css";
+import "./styles/styles.css";
 
 // Create Header
 createNewDiv("header", "content");
@@ -29,3 +30,8 @@ footer();
 const currentProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
 addProjectToPage(currentProjects);
 addProjectToMenu(currentProjects);
+
+const elements = document.querySelectorAll(".userProjectNames");
+elements.forEach(function (element) {
+  element.addEventListener("click", oneProjectView);
+});
