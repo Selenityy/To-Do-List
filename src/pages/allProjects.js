@@ -13,6 +13,10 @@ import {
   createHr,
   createFormBox,
 } from "../functions/DOMlogic";
+import {
+  addProjectToMenu,
+  addProjectToPage,
+} from "../functions/applicationLogic";
 import allTaskImg from "../assets/all-tasks.png";
 import todayTasksImg from "../assets/today-tasks.png";
 import weekTasksImg from "../assets/this-week-task.png";
