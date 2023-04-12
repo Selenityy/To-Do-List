@@ -5,18 +5,10 @@ import {
   createImg,
   addBtn,
   addUl,
-  addLi,
   addEventListClick,
-  addHref,
-  addPara,
   createPara,
   createHr,
-  createFormBox,
 } from "../functions/DOMlogic";
-import {
-  addProjectToMenu,
-  addProjectToPage,
-} from "../functions/applicationLogic";
 import allTaskImg from "../assets/all-tasks.png";
 import todayTasksImg from "../assets/today-tasks.png";
 import weekTasksImg from "../assets/this-week-task.png";
@@ -53,6 +45,10 @@ export default function allProjects() {
   //   addUl("allProjects", "menu");
   addText("allProjects", "All Projects");
 
+  // Adds the Ul for the projects to nest under
+  addUl("allProjectsList", "allProjects");
+  setClassAttr("allProjectsList", "allProjectsListClass");
+
   // Add Project Button
   addBtn("addProject", "allProjects");
   addText("addProject", "+");
@@ -69,7 +65,4 @@ export default function allProjects() {
 
   // Create Project Div Parent
   createNewDiv("newProjectDiv", "mainContent");
-
-  addUl("allProjectsList", "allProjects");
-  setClassAttr("allProjectsList", "allProjectsListClass");
 }
