@@ -2,6 +2,7 @@ import allProjects from "./pages/allProjects";
 import {
   addProjectToMenu,
   addProjectToPage,
+  listenForClickOnProject,
   oneProjectView,
 } from "./functions/applicationLogic";
 import { createNewDiv, setClassAttr } from "./functions/DOMlogic";
@@ -30,8 +31,3 @@ footer();
 const currentProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
 addProjectToPage(currentProjects);
 addProjectToMenu(currentProjects);
-
-const elements = document.querySelectorAll(".userProjectNames");
-elements.forEach(function (element) {
-  element.addEventListener("click", oneProjectView);
-});
