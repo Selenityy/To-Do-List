@@ -1,10 +1,12 @@
 import allProjects from "./pages/allProjects";
-import { addProjectToMenu, addProjectToPage } from "./functions/modal";
+import {
+  addProjectToMenu,
+  addProjectToPage,
+} from "./functions/applicationLogic";
 import { createNewDiv, setClassAttr } from "./functions/DOMlogic";
 import header from "./pages/header";
 import footer from "./pages/footer";
 import "./styles/header.css";
-// import "./styles/body.css"
 
 // Create Header
 createNewDiv("header", "content");
