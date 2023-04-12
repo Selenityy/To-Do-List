@@ -159,11 +159,33 @@ const addProjectToPage = (projectList) => {
       addProjectToMenu(myProjects);
     };
   }
+  listenForClickOnProject();
 };
 
+// Changes view to one project not all projects
 const oneProjectView = () => {
   console.log("HELLO ");
 };
+
+// listener event for the project divs
+function listenForClickOnProject() {
+  const childrenDivElements = document.querySelectorAll(
+    ".userProjectNames, .userProjectDescription, .userProjectDueDate, .userProjectPriority, .userProjectNotes"
+  );
+  childrenDivElements.forEach(function (childrenDiv) {
+    childrenDiv.addEventListener("click", function (event) {
+      if (
+        event.target.classList.contains("unchecked") ||
+        event.target.classList.contains("checked") ||
+        event.target.classList.contains("removeBtn")
+      ) {
+        event.stopPropagation();
+      } else {
+        oneProjectView();
+      }
+    });
+  });
+}
 
 export {
   removeModalForm,
@@ -171,4 +193,5 @@ export {
   addProjectToMenu,
   addProjectToPage,
   oneProjectView,
+  listenForClickOnProject,
 };
