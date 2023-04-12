@@ -1,4 +1,5 @@
 import { myProjects } from "./modal";
+import { createModal } from "./modal";
 import { addBtn, addLi, addText, createNewDiv, setClassAttr } from "./DOMlogic";
 
 // Create Tasks
@@ -125,8 +126,12 @@ const addProjectToPage = (projectList) => {
     let completedBtn = document.getElementById(`newProjectCompletedBtn${i}`);
     completedBtn.onclick = function (completedEvent) {
       let completedProjectName = completedEvent.target.parentElement.id;
+      let newCompletedProjectNameStr = completedProjectName.replace(/-/g, " ");
+      console.log(completedProjectName);
+      console.log(newCompletedProjectNameStr);
+      console.log(myProjects);
       let result = myProjects.find(
-        (project) => project.name === completedProjectName
+        (project) => project.name === newCompletedProjectNameStr
       );
       if (completedEvent.target.classList.contains("unchecked")) {
         completedEvent.target.classList.remove("unchecked");
@@ -159,4 +164,12 @@ const addProjectToPage = (projectList) => {
   }
 };
 
-export { removeModalForm, dateFormat, addProjectToMenu, addProjectToPage };
+const oneProjectView = () => {};
+
+export {
+  removeModalForm,
+  dateFormat,
+  addProjectToMenu,
+  addProjectToPage,
+  oneProjectView,
+};
