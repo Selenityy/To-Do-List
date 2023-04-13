@@ -2,6 +2,8 @@ import { myProjects } from "./modal";
 import { createModal } from "./modal";
 import { addBtn, addLi, addText, createNewDiv, setClassAttr } from "./DOMlogic";
 
+let globalChildId;
+let globalParentId;
 // Create Tasks
 
 // Remove Tasks
@@ -166,14 +168,14 @@ const addProjectToPage = (projectList) => {
 const oneProjectView = () => {
   // hide all children under the newProjectDiv parent id
   let parent = document.getElementById("newProjectDiv");
-  //   let children = document.querySelectorAll(
-  //     ".userProjectList, .unchecked, .checked, .removeBtn, .userProjectNames, .userProjectDescription, .userProjectDueDate, .userProjectPriority, .userProjectNotes"
-  //   );
-  let children = document.getElementsByClassName("userProjectList");
+  let children = parent.getElementsByClassName("userProjectList");
   for (let c = 0; c < children.length; c++) {
     children[c].style.display = "none";
   }
-  console.log("HELLO ");
+
+  console.log("child div is " + globalChildId);
+  console.log("parent div is " + globalParentId);
+   
 };
 
 // listener event for the project divs
@@ -190,6 +192,9 @@ function listenForClickOnProject() {
       ) {
         event.stopPropagation();
       } else {
+        globalChildId = event.target.id;
+        let parent = event.target.parentNode;
+        globalParentId = parent.id;
         oneProjectView();
       }
     });
