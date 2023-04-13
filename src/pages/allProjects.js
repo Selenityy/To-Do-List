@@ -13,13 +13,15 @@ import allTaskImg from "../assets/all-tasks.png";
 import todayTasksImg from "../assets/today-tasks.png";
 import weekTasksImg from "../assets/this-week-task.png";
 import { createModal } from "../functions/modal";
+import { oneProjectView } from "../functions/applicationLogic";
 
 export default function allProjects() {
   // Projects Page Div within Body
   createNewDiv("allProjectsPage", "body");
   setClassAttr("allProjectsPage", "allProjectsPageContent");
 
-  // Menu Content
+  // ----------- MENU -----------
+
   createNewDiv("menu", "allProjectsPage");
   setClassAttr("menu", "allProjectsPageContent");
 
@@ -42,12 +44,9 @@ export default function allProjects() {
 
   // Menu - All Projects
   createNewDiv("allProjects", "menu");
+
   //   addUl("allProjects", "menu");
   addText("allProjects", "All Projects");
-
-  // Adds the Ul for the projects to nest under
-  addUl("allProjectsList", "allProjects");
-  setClassAttr("allProjectsList", "allProjectsListClass");
 
   // Add Project Button
   addBtn("addProject", "allProjects");
@@ -56,7 +55,7 @@ export default function allProjects() {
   // add code when button is clicked to add li's to the ul of each new project
   addEventListClick("addProject", createModal);
 
-  // Projects Main Body Content
+  // ----------- MAIN CONTENT -----------
   createNewDiv("mainContent", "allProjectsPage");
   setClassAttr("mainContent", "allProjectsPageContent");
 
@@ -65,4 +64,11 @@ export default function allProjects() {
 
   // Create Project Div Parent
   createNewDiv("newProjectDiv", "mainContent");
+
+  // Adds the Ul for the projects to nest under
+  addUl("allProjectsList", "allProjects");
+  setClassAttr("allProjectsList", "allProjectsListClass");
+
+  // Create One Project Div
+  createNewDiv("oneProjectDiv", "mainContent");
 }
