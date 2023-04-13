@@ -164,6 +164,15 @@ const addProjectToPage = (projectList) => {
 
 // Changes view to one project not all projects
 const oneProjectView = () => {
+  // hide all children under the newProjectDiv parent id
+  let parent = document.getElementById("newProjectDiv");
+  //   let children = document.querySelectorAll(
+  //     ".userProjectList, .unchecked, .checked, .removeBtn, .userProjectNames, .userProjectDescription, .userProjectDueDate, .userProjectPriority, .userProjectNotes"
+  //   );
+  let children = document.getElementsByClassName("userProjectList");
+  for (let c = 0; c < children.length; c++) {
+    children[c].style.display = "none";
+  }
   console.log("HELLO ");
 };
 
