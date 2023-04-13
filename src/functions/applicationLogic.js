@@ -178,13 +178,28 @@ const oneProjectView = () => {
 
   // Project Header
   createNewDiv("projectHeader", "oneProjectDiv");
+
+  // Add in the completed/not completed checkbox
   createNewDiv("checkBox", "projectHeader");
+  let parentID = document.getElementById(globalParentId);
+  let checkBoxChild = parentID.querySelector(":first-child");
+  let checkBoxClass = checkBoxChild.classList[0];
+  console.log(checkBoxClass);
+  if (checkBoxClass === "checked") {
+    setClassAttr("checkBox", "checked");
+  } else {
+    setClassAttr("checkBox", "unchecked");
+  }
+
+  // Use the project clicked title
   createNewDiv("projectTitle", "projectHeader");
   let childElement = document.getElementById(globalChildId);
   addText("projectTitle", childElement.textContent);
 
-  createNewDiv("backBtn", "projectHeader");
-  createNewDiv("closeBtn", "projectHeader");
+  // Attach a back button
+  addBtn("backBtn", "projectHeader");
+  setClassAttr("backBtn", "backBtn");
+  addText("backBtn", "←");
 
   // Project Body
   createNewDiv("projectBody", "oneProjectDiv");
