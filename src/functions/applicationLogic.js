@@ -175,7 +175,22 @@ const oneProjectView = () => {
 
   console.log("child div is " + globalChildId);
   console.log("parent div is " + globalParentId);
-   
+
+  // Project Header
+  createNewDiv("projectHeader", "oneProjectDiv");
+  createNewDiv("checkBox", "projectHeader");
+  createNewDiv("projectTitle", "projectHeader");
+  let childElement = document.getElementById(globalChildId);
+  addText("projectTitle", childElement.textContent);
+
+  createNewDiv("backBtn", "projectHeader");
+  createNewDiv("closeBtn", "projectHeader");
+
+  // Project Body
+  createNewDiv("projectBody", "oneProjectDiv");
+  createNewDiv("sections", "projectBody");
+  createNewDiv("newSubtaskBtn", "projectBody");
+  createNewDiv("newSectionBtn", "projectBody");
 };
 
 // listener event for the project divs
