@@ -4,7 +4,49 @@ import { addBtn, addLi, addText, createNewDiv, setClassAttr } from "./DOMlogic";
 
 let globalChildId;
 let globalParentId;
+
 // Create Tasks
+const newTask = () => {
+  console.log("Here is a new task");
+};
+
+// Create new Section
+const newSection = () => {
+  console.log("Here is a new section");
+};
+
+// Completed Project
+const completedProject = (projectName, completedClass, siblingCheckedDiv) => {
+  let matchingProject;
+  let matchingProjectToggleCompletionValue;
+  let checkBoxDiv = document.getElementById("checkBox");
+  let checkBoxClassName = checkBoxDiv.className;
+  let siblingBoxDiv = siblingCheckedDiv;
+
+  let classValue = completedClass;
+  let siblingDivClassName = siblingCheckedDiv.classList;
+  let siblingDivIdName = siblingBoxDiv.id;
+
+  let key = localStorage.key(myProjects);
+  let value = JSON.parse(localStorage.getItem(key));
+  for (let v = 0; v < value.length; v++) {
+    if (value[v].name === projectName) {
+      matchingProject = value[v];
+      matchingProjectToggleCompletionValue = value[v].completed;
+    }
+  }
+  if (checkBoxClassName === "checked") {
+    console.log("CLICKED NOW UNCHECKED");
+    checkBoxDiv.classList.remove("checked");
+    checkBoxDiv.classList.add("unchecked");
+    return;
+  } else if (checkBoxClassName === "unchecked") {
+    console.log("CLICKED NOW CHECKED");
+    checkBoxDiv.classList.remove("unchecked");
+    checkBoxDiv.classList.add("checked");
+    return;
+  }
+};
 
 // Remove Tasks
 
@@ -18,7 +60,10 @@ let globalParentId;
 
 // Change Task Notes
 
-// Change Task Completion
+// Back function from one project view to all project view
+const backFunction = () => {
+  console.log("I went back");
+};
 
 // Remove Modal Form
 const removeModalForm = () => {
@@ -173,23 +218,52 @@ const oneProjectView = () => {
     children[c].style.display = "none";
   }
 
-  console.log("child div is " + globalChildId);
-  console.log("parent div is " + globalParentId);
-
   // Project Header
   createNewDiv("projectHeader", "oneProjectDiv");
 
   // Add in the completed/not completed checkbox
   createNewDiv("checkBox", "projectHeader");
-  let parentID = document.getElementById(globalParentId);
-  let checkBoxChild = parentID.querySelector(":first-child");
-  let checkBoxClass = checkBoxChild.classList[0];
-  console.log(checkBoxClass);
-  if (checkBoxClass === "checked") {
-    setClassAttr("checkBox", "checked");
-  } else {
-    setClassAttr("checkBox", "unchecked");
-  }
+  let parentDivHTML = document.getElementById(globalParentId);
+  let parentDivId = parentDivHTML.id.replace(/-/g, " ");
+  let siblingCompletedBoxHTML = parentDivHTML.querySelector(":first-child");
+
+  // set's the class attribute to the same one the project has
+  let checkBoxClass = siblingCompletedBoxHTML.classList[0];
+  setClassAttr("checkBox", checkBoxClass);
+
+  let completedBtnOneProjectView = document.getElementById("checkBox");
+  completedBtnOneProjectView.addEventListener("click", function () {
+    completedProject(parentDivId, checkBoxClass, siblingCompletedBoxHTML);
+  });
+
+  // runs the code to check a project as done on click
+
+  //   for (let l = 0; l < myProjects.length; l++) {
+  //     let projectFindings = myProjects.find(
+  //       (project) => project.name === projectTitleStr
+  //     );
+  //     if (childDivCheckBox.classList.contains("unchecked")) {
+  //       childDivCheckBox.classList.remove("unchecked");
+  //       childDivCheckBox.classList.add("checked");
+  //       projectFindings.completed = true;
+  //       let menuTitle = document.getElementById(`onlyProjectName${l}`);
+  //       menuTitle.style.setProperty("text-decoration", "line-through");
+  //     } else {
+  //       childDivCheckBox.classList.remove("checked");
+  //       childDivCheckBox.classList.add("unchecked");
+  //       projectFindings.completed = false;
+  //       let menuTitle = document.getElementById(`onlyProjectName${l}`);
+  //       menuTitle.style.setProperty("text-decoration", "line-through");
+  //     }
+  //     localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
+  //   }
+
+  //   let checkBoxClass = siblingCompletedBoxHTML.classList[0];
+  //   if (checkBoxClass === "checked") {
+  //     setClassAttr("checkBox", "checked");
+  //   } else {
+  //     setClassAttr("checkBox", "unchecked");
+  //   }
 
   // Use the project clicked title
   createNewDiv("projectTitle", "projectHeader");
@@ -200,33 +274,41 @@ const oneProjectView = () => {
   addBtn("backBtn", "projectHeader");
   setClassAttr("backBtn", "backBtn");
   addText("backBtn", "←");
+  let backBtn = document.getElementById("backBtn");
+  backBtn.onclick = backFunction;
 
   // Project Body
   createNewDiv("projectBody", "oneProjectDiv");
+
+  // 1st Section
   createNewDiv("sections", "projectBody");
-  createNewDiv("newSubtaskBtn", "projectBody");
-  createNewDiv("newSectionBtn", "projectBody");
+  addText("sections", "To Dos");
+  document.getElementById("sections").contentEditable = "true";
+
+  // Create Subtasks
+  addBtn("newSubtaskBtn", "projectBody");
+  addText("newSubtaskBtn", "+ Add Task");
+  let newTaskBtn = document.getElementById("newSubtaskBtn");
+  newTaskBtn.onclick = newTask;
+
+  // Create Sections
+  addBtn("newSectionBtn", "projectBody");
+  addText("newSectionBtn", "+ Add Section");
+  let newSectionBtn = document.getElementById("newSectionBtn");
+  newSectionBtn.onclick = newSection;
 };
 
-// listener event for the project divs
+// listener event for the project divs to be clicked to show one project view
 function listenForClickOnProject() {
   const childrenDivElements = document.querySelectorAll(
     ".userProjectNames, .userProjectDescription, .userProjectDueDate, .userProjectPriority, .userProjectNotes"
   );
   childrenDivElements.forEach(function (childrenDiv) {
     childrenDiv.addEventListener("click", function (event) {
-      if (
-        event.target.classList.contains("unchecked") ||
-        event.target.classList.contains("checked") ||
-        event.target.classList.contains("removeBtn")
-      ) {
-        event.stopPropagation();
-      } else {
-        globalChildId = event.target.id;
-        let parent = event.target.parentNode;
-        globalParentId = parent.id;
-        oneProjectView();
-      }
+      globalChildId = event.target.id;
+      let parent = event.target.parentNode;
+      globalParentId = parent.id;
+      oneProjectView();
     });
   });
 }
