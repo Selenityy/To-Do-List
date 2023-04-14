@@ -20,24 +20,26 @@ const completedProject = (projectClickedNameStr, oneProjectViewCheckBoxDiv) => {
   let completedProjectDivId = projectClickedNameStr.id;
   let completedProjectDivNameStr = completedProjectDivId.replace(/-/g, " ");
   let checkBoxCompletionDiv = projectClickedNameStr.firstChild;
-
   for (let s = 0; s < myProjects.length; s++) {
     let matchingProject = myProjects.find(
       (project) => project.name === completedProjectDivNameStr
     );
-    console.log(checkBoxCompletionDiv);
     if (checkBoxCompletionDiv.classList.contains("unchecked")) {
       checkBoxCompletionDiv.classList.remove("unchecked");
       checkBoxCompletionDiv.classList.add("checked");
       oneProjectViewCheckBoxDiv.classList.remove("unchecked");
       oneProjectViewCheckBoxDiv.classList.add("checked");
       matchingProject.completed = true;
+      let projectMenuTitle = document.getElementById(`onlyProjectName${s}`);
+      projectMenuTitle.style.setProperty("text-decoration", "line-through");
     } else {
       checkBoxCompletionDiv.classList.remove("checked");
       checkBoxCompletionDiv.classList.add("unchecked");
       oneProjectViewCheckBoxDiv.classList.remove("checked");
       oneProjectViewCheckBoxDiv.classList.add("unchecked");
       matchingProject.completed = false;
+      let projectMenuTitle = document.getElementById(`onlyProjectName${s}`);
+      projectMenuTitle.style.setProperty("text-decoration", "none");
     }
     localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
   }
