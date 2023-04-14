@@ -16,37 +16,30 @@ const newSection = () => {
 };
 
 // Completed Project
-const completedProject = (projectName, siblingCheckedDiv) => {
-  let matchingProject;
-  let matchingProjectToggleCompletionValue;
-  let checkBoxDiv = document.getElementById("checkBox");
-  let checkBoxClassName = checkBoxDiv.className;
-  let ogDiv = siblingCheckedDiv.id;
-  let ogBtnId = document.getElementById(ogDiv);
+const completedProject = (projectClickedNameStr, oneProjectViewCheckBoxDiv) => {
+  let completedProjectDivId = projectClickedNameStr.id;
+  let completedProjectDivNameStr = completedProjectDivId.replace(/-/g, " ");
+  let checkBoxCompletionDiv = projectClickedNameStr.firstChild;
 
-  let key = localStorage.key(myProjects);
-  let value = JSON.parse(localStorage.getItem(key));
-  for (let v = 0; v < value.length; v++) {
-    if (value[v].name === projectName) {
-      matchingProject = value[v];
-      matchingProjectToggleCompletionValue = value[v].completed;
+  for (let s = 0; s < myProjects.length; s++) {
+    let matchingProject = myProjects.find(
+      (project) => project.name === completedProjectDivNameStr
+    );
+    console.log(checkBoxCompletionDiv);
+    if (checkBoxCompletionDiv.classList.contains("unchecked")) {
+      checkBoxCompletionDiv.classList.remove("unchecked");
+      checkBoxCompletionDiv.classList.add("checked");
+      oneProjectViewCheckBoxDiv.classList.remove("unchecked");
+      oneProjectViewCheckBoxDiv.classList.add("checked");
+      matchingProject.completed = true;
+    } else {
+      checkBoxCompletionDiv.classList.remove("checked");
+      checkBoxCompletionDiv.classList.add("unchecked");
+      oneProjectViewCheckBoxDiv.classList.remove("checked");
+      oneProjectViewCheckBoxDiv.classList.add("unchecked");
+      matchingProject.completed = false;
     }
-  }
-  console.log(matchingProject);
-  if (checkBoxClassName === "checked") {
-    console.log("CLICKED NOW UNCHECKED");
-    checkBoxDiv.classList.remove("checked");
-    checkBoxDiv.classList.add("unchecked");
-    ogBtnId.classList.remove("checked");
-    ogBtnId.classList.add("unchecked");
-    matchingProject.completed = false;
-  } else if (checkBoxClassName === "unchecked") {
-    console.log("CLICKED NOW CHECKED");
-    checkBoxDiv.classList.remove("unchecked");
-    checkBoxDiv.classList.add("checked");
-    ogBtnId.classList.remove("unchecked");
-    ogBtnId.classList.add("checked");
-    matchingProject.completed = true;
+    localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
   }
 };
 
@@ -235,7 +228,7 @@ const oneProjectView = () => {
 
   let completedBtnOneProjectView = document.getElementById("checkBox");
   completedBtnOneProjectView.addEventListener("click", function () {
-    completedProject(parentDivId, siblingCompletedBoxHTML);
+    completedProject(parentDivHTML, completedBtnOneProjectView);
   });
 
   // Use the project clicked title
