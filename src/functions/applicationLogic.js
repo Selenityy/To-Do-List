@@ -15,34 +15,40 @@ const newSection = () => {
   console.log("Here is a new section");
 };
 
-// Completed Project
+// Completed Project from One Project View
 const completedProject = (projectClickedNameStr, oneProjectViewCheckBoxDiv) => {
   let completedProjectDivId = projectClickedNameStr.id;
   let completedProjectDivNameStr = completedProjectDivId.replace(/-/g, " ");
   let checkBoxCompletionDiv = projectClickedNameStr.firstChild;
-  for (let s = 0; s < myProjects.length; s++) {
-    let matchingProject = myProjects.find(
-      (project) => project.name === completedProjectDivNameStr
-    );
-    if (checkBoxCompletionDiv.classList.contains("unchecked")) {
-      checkBoxCompletionDiv.classList.remove("unchecked");
-      checkBoxCompletionDiv.classList.add("checked");
-      oneProjectViewCheckBoxDiv.classList.remove("unchecked");
-      oneProjectViewCheckBoxDiv.classList.add("checked");
-      matchingProject.completed = true;
-      let projectMenuTitle = document.getElementById(`onlyProjectName${s}`);
-      projectMenuTitle.style.setProperty("text-decoration", "line-through");
-    } else {
-      checkBoxCompletionDiv.classList.remove("checked");
-      checkBoxCompletionDiv.classList.add("unchecked");
-      oneProjectViewCheckBoxDiv.classList.remove("checked");
-      oneProjectViewCheckBoxDiv.classList.add("unchecked");
-      matchingProject.completed = false;
-      let projectMenuTitle = document.getElementById(`onlyProjectName${s}`);
-      projectMenuTitle.style.setProperty("text-decoration", "none");
+  let projectMenuElements = document.querySelectorAll(".menuProjectName");
+  let projectMatchingMenuTitle;
+  projectMenuElements.forEach((project) => {
+    if (project.textContent === completedProjectDivNameStr) {
+      projectMatchingMenuTitle = project;
     }
-    localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
+  });
+  let matchingProject = myProjects.find(
+    (project) => project.name === completedProjectDivNameStr
+  );
+  if (checkBoxCompletionDiv.classList.contains("unchecked")) {
+    checkBoxCompletionDiv.classList.remove("unchecked");
+    checkBoxCompletionDiv.classList.add("checked");
+    oneProjectViewCheckBoxDiv.classList.remove("unchecked");
+    oneProjectViewCheckBoxDiv.classList.add("checked");
+    matchingProject.completed = true;
+    projectMatchingMenuTitle.style.setProperty(
+      "text-decoration",
+      "line-through"
+    );
+  } else {
+    checkBoxCompletionDiv.classList.remove("checked");
+    checkBoxCompletionDiv.classList.add("unchecked");
+    oneProjectViewCheckBoxDiv.classList.remove("checked");
+    oneProjectViewCheckBoxDiv.classList.add("unchecked");
+    matchingProject.completed = false;
+    projectMatchingMenuTitle.style.setProperty("text-decoration", "none");
   }
+  localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
 };
 
 // Remove Tasks
@@ -166,7 +172,7 @@ const addProjectToPage = (projectList) => {
         "Notes: " + projectList[i].notes;
     }
 
-    // Mark Project as done
+    // Mark Project as done within the All Projects Page
     let completedBtn = document.getElementById(`newProjectCompletedBtn${i}`);
     completedBtn.onclick = function (completedEvent) {
       let completedProjectName = completedEvent.target.parentElement.id;
@@ -222,6 +228,9 @@ const oneProjectView = () => {
   createNewDiv("checkBox", "projectHeader");
   let parentDivHTML = document.getElementById(globalParentId);
   let parentDivId = parentDivHTML.id.replace(/-/g, " ");
+  let projectNameIndex = parentDivHTML.querySelectorAll(":nth-child(3)");
+  let projectNameIndexId = projectNameIndex[0].id;
+  //   console.log(projectNameIndex);
   let siblingCompletedBoxHTML = parentDivHTML.querySelector(":first-child");
 
   // set's the class attribute to the same one the project has
