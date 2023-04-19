@@ -1,0 +1,446 @@
+@font-face {
+  font-family: "Caveat";
+  src: url("../assets/caveat-font.woff");
+}
+
+@font-face {
+  font-family: "ShantellReg";
+  src: url("../assets/ShantellSans-Regular.woff");
+}
+
+@font-face {
+  font-family: "ShantellBold";
+  src: url("../assets/ShantellSans-Bold.woff");
+}
+
+@font-face {
+  font-family: "ShantellMed";
+  src: url("../assets/ShantellSans-Medium.woff");
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+#content {
+  display: grid;
+  grid:
+    "header" auto
+    "main" 1fr
+    "footer" auto
+    / 1fr;
+  height: 100%;
+}
+
+#header {
+  grid-area: header;
+}
+
+#body {
+  grid-area: main;
+}
+
+#footer {
+  grid-area: footer;
+}
+
+/* --------- HEADER --------- */
+
+#headerTitle {
+  font-family: "Caveat";
+  font-size: 3rem;
+  text-shadow: 1px 1px #adadad;
+}
+
+#headerLogo {
+  width: 4%;
+}
+
+#headerElements {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 1rem;
+  background-color: #ffe8e8;
+  border-bottom: 2px solid #adadad;
+}
+
+/* --------- BODY --------- */
+
+#allProjectsPage {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "menu content";
+  height: 100%;
+  background-color: #fffefc;
+  background-size: 300px;
+  background-image: url("../assets/dot-background-opacity.png");
+}
+
+#menu {
+  grid-area: menu;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: white;
+  filter: drop-shadow(17px 10px 3px rgba(248, 122, 172, 0.5));
+  border: 1px solid black;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+#currentTasks {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 25px 55px 25px 15px;
+}
+
+img {
+  width: 20px;
+}
+
+#allTasks,
+#todayTasks,
+#thisWeekTasks {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-family: "ShantellReg";
+  gap: 10px;
+}
+
+#horizontalRuler {
+  border-top: 5px dotted rgb(248, 122, 172);
+  border-bottom: none;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#allProjects {
+  font-family: "ShantellMed";
+  font-size: 1.5rem;
+  padding: 15px;
+}
+
+#addProject {
+  padding: 0;
+  border: none;
+  background: none;
+  margin-left: 75px;
+  font-size: 1.5rem;
+}
+
+#addProject:hover {
+  background-color: #ffe8e8;
+  border-radius: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 65px;
+}
+
+#allProjectsList {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: auto;
+  padding-top: 5px;
+  padding-left: 20px;
+  overflow: scroll;
+  inline-size: 250px;
+}
+
+li.userProjectLi {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-family: "ShantellReg";
+  padding: 5px;
+  list-style-type: disc;
+}
+
+li.userProjectLi::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgb(248, 122, 172);
+  margin-right: 8px;
+}
+
+.menuProjectName {
+  padding-left: 10px;
+}
+
+#mainContent {
+  grid-area: content;
+  display: flex;
+  flex-wrap: wrap;
+  /* position: absolute;
+  z-index: 1; */
+}
+
+.userProjectList {
+  display: grid;
+  grid-template-columns: auto repeat(2, min-content);
+  grid-template-rows: 40px min-content 30px 106px 20px;
+  grid-template-areas:
+    "box details close"
+    "projectTitle projectTitle projectTitle"
+    "projectDescription projectDescription projectDescription"
+    "projectNotes projectNotes projectNotes"
+    "projectDueDate . projectPriority";
+  background-color: white;
+  border-radius: 8px;
+  margin-left: 35px;
+  margin-bottom: 35px;
+  margin-top: 5px;
+  /* filter: drop-shadow(17px 10px 3px rgba(248, 122, 172, 0.5)); */
+  width: 350px;
+  height: 250px;
+  outline: 1px solid black;
+  border: 4px dashed rgba(248, 122, 172, 0.7);
+  outline-offset: 3px;
+  padding: 10px;
+}
+
+.userProjectNames {
+  grid-area: projectTitle;
+  font-size: 1.4rem;
+  font-family: "ShantellMed";
+}
+
+.userProjectDescription {
+  grid-area: projectDescription;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #696969;
+}
+
+.userProjectDueDate {
+  grid-area: projectDueDate;
+  font-size: 1rem;
+}
+
+.userProjectPriority {
+  grid-area: projectPriority;
+  font-size: 1rem;
+}
+
+.userProjectNotes {
+  grid-area: projectNotes;
+  font-size: 1rem;
+}
+
+.userProjectNotes,
+.userProjectDescription,
+.userProjectDueDate,
+.userProjectPriority,
+.userProjectNotes {
+  font-family: "ShantellReg";
+}
+
+#newProjectDiv {
+  margin-left: 20px;
+  margin-top: 20px;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(4, 400px);
+  grid-template-rows: repeat(4, 300px);
+}
+
+.unchecked {
+  grid-area: box;
+  background-image: url(../assets/unchecked.png);
+  height: 30px;
+  width: 30px;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  background-repeat: no-repeat;
+  justify-self: start;
+}
+
+.checked {
+  grid-area: box;
+  background-image: url(../assets//logo.png);
+  height: 27px;
+  width: 27px;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  background-repeat: no-repeat;
+  justify-self: start;
+}
+
+.removeBtn {
+  grid-area: close;
+  /* background-color: #f992bb; */
+  background-color: white;
+  border-radius: 8px;
+  font-family: "ShantellReg";
+  font-size: 1rem;
+  /* padding: 5px;
+  margin-top: 10px; */
+  /* border: 2px solid black; */
+  border: none;
+  width: 25px;
+  height: 25px;
+  justify-self: end;
+}
+
+.detailsBtn {
+  grid-area: details;
+  background-image: url(../assets/dots.png);
+  background-color: transparent;
+  border: none;
+  height: 25px;
+  width: 36px;
+  color: black;
+  background-size: contain;
+  background-repeat: no-repeat;
+  justify-self: center;
+}
+
+/* --------- MODAL --------- */
+
+#modalDiv {
+  margin-top: 20px;
+  margin-left: 45px;
+  position: absolute;
+  z-index: 1;
+}
+
+#myModal {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "title close"
+    "body body";
+  border-radius: 25px;
+  /* border: 1px solid black; */
+  border: 15px solid rgba(248, 122, 172, 0.5);
+  padding: 0px 10px 10px 5px;
+  overflow: auto;
+  background-color: white;
+  width: max-content;
+}
+
+ul.pop_up > li {
+  list-style-type: none;
+}
+
+.close {
+  grid-area: close;
+  float: right;
+  color: black;
+  font-size: 2rem;
+  align-self: flex-start;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+h2 {
+  grid-area: title;
+  font-size: 2.5rem;
+  font-family: "ShantellReg";
+  text-shadow: 1px 1px 1px black;
+  color: #d8bfd8;
+}
+
+.modal_content {
+  grid-area: body;
+  padding-top: 10px;
+}
+
+label {
+  display: inline-block;
+  width: 150px;
+  font-family: "ShantellReg";
+  font-size: 1.2rem;
+}
+
+input[type="text"],
+textarea,
+input[type="date"] {
+  max-width: 400px;
+  min-width: 200px;
+  padding: 1px 2px;
+  font-size: 1.2rem;
+  font-family: "ShantellReg";
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+#submitBtn {
+  margin-top: 10px;
+  border-radius: 12px;
+  padding: 10px 160px;
+  font-size: 1rem;
+  background-color: #d8bfd8;
+  font-weight: bold;
+  border: 1px solid #adadad;
+}
+
+#submitBtn:active {
+  background-color: #d8bfd8;
+  box-shadow: 0 5px #adadad;
+  transform: translateY(5px);
+  transition-duration: 0.4s;
+}
+
+/* --------- ONE PROJECT VIEW --------- */
+
+#oneProjectDiv {
+  position: absolute;
+  top: 11.5%;
+  left: 23.2%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#projectHeader {
+  display: flex;
+  align-items: center;
+}
+
+#projectTitle {
+  font-family: "ShantellReg";
+  font-size: 1.4rem;
+}
+
+#backBtn {
+  font-family: "ShantellReg";
+  font-size: 2rem;
+  border: none;
+  background-color: white;
+}
+
+#projectBody {
+  display: flex;
+  font-family: "ShantellReg";
+}
+
+/* --------- FOOTER --------- */
