@@ -107,10 +107,10 @@ const createModal = () => {
         ? ""
         : document.getElementById("description").value;
     const formSubmissionNewProjectDueDate =
-      dateFormat(document.getElementById("dueDate").value, "mm-dd-yyyy") ===
+      dateFormat(document.getElementById("dueDate").value) ===
       "Invalid Date"
         ? ""
-        : dateFormat(document.getElementById("dueDate").value, "mm-dd-yyyy");
+        : dateFormat(document.getElementById("dueDate").value);
     const formSubmissionNewProjectPriority =
       document.getElementById("priority").value === undefined
         ? ""

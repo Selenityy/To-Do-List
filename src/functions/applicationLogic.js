@@ -66,6 +66,17 @@ const completedProject = (projectClickedNameStr, oneProjectViewCheckBoxDiv) => {
 // Back function from one project view to all project view
 const backFunction = () => {
   console.log("I went back");
+  let parent = document.getElementById("newProjectDiv");
+  let children = parent.getElementsByClassName("userProjectList");
+  for (let c = 0; c < children.length; c++) {
+    children[c].style.visibility = "visible";
+  }
+  let oneProjectParentDiv = document.getElementById("oneProjectDiv");
+  let oneProjectChildren =
+    oneProjectParentDiv.getElementsByClassName("oneProjectView");
+  for (let p = 0; p < oneProjectChildren.length; p++) {
+    oneProjectChildren[p].style.visibility = "hidden";
+  }
 };
 
 // Remove Modal Form
@@ -77,12 +88,12 @@ const removeModalForm = () => {
 };
 
 // Date Formatter
-const dateFormat = (inputDate, format) => {
+const dateFormat = (inputDate) => {
   let dateValue = new Date(inputDate);
   return dateValue.toLocaleString([], {
-    month: "long",
+    month: "2-digit",
     day: "2-digit",
-    year: "numeric",
+    year: "2-digit",
   });
 };
 
@@ -124,6 +135,10 @@ const addProjectToPage = (projectList) => {
       .getElementById(`newProjectCompletedBtn${i}`)
       .classList.add(projectCompletionCheck);
 
+    // adding code here to test
+    addBtn(`newProjectDetailsBtn${i}`, formattedName);
+    setClassAttr(`newProjectDetailsBtn${i}`, "detailsBtn");
+
     addBtn(`newProjectRemoveBtn${i}`, formattedName);
     addText(`newProjectRemoveBtn${i}`, "X");
     setClassAttr(`newProjectRemoveBtn${i}`, "removeBtn");
@@ -134,14 +149,14 @@ const addProjectToPage = (projectList) => {
     createNewDiv(`newProjectDescription${i}`, formattedName);
     setClassAttr(`newProjectDescription${i}`, "userProjectDescription");
 
+    createNewDiv(`newProjectNotes${i}`, formattedName);
+    setClassAttr(`newProjectNotes${i}`, "userProjectNotes");
+
     createNewDiv(`newProjectDueDate${i}`, formattedName);
     setClassAttr(`newProjectDueDate${i}`, "userProjectDueDate");
 
     createNewDiv(`newProjectPriority${i}`, formattedName);
     setClassAttr(`newProjectPriority${i}`, "userProjectPriority");
-
-    createNewDiv(`newProjectNotes${i}`, formattedName);
-    setClassAttr(`newProjectNotes${i}`, "userProjectNotes");
 
     // Change innerHTML of the divs to the projects array
     document.getElementsByClassName("userProjectNames")[i].innerHTML =
@@ -151,25 +166,25 @@ const addProjectToPage = (projectList) => {
         "";
     } else {
       document.getElementsByClassName("userProjectDescription")[i].innerHTML =
-        "Description: " + projectList[i].description;
-    }
-    if (projectList[i].dueDate === "") {
-      document.getElementsByClassName("userProjectDueDate")[i].innerHTML = "";
-    } else {
-      document.getElementsByClassName("userProjectDueDate")[i].innerHTML =
-        "Due Date: " + projectList[i].dueDate;
-    }
-    if (projectList[i].priority === "-") {
-      document.getElementsByClassName("userProjectPriority")[i].innerHTML = "";
-    } else {
-      document.getElementsByClassName("userProjectPriority")[i].innerHTML =
-        "Priority Level: " + projectList[i].priority;
+        projectList[i].description;
     }
     if (projectList[i].notes === "") {
       document.getElementsByClassName("userProjectNotes")[i].innerHTML = "";
     } else {
       document.getElementsByClassName("userProjectNotes")[i].innerHTML =
-        "Notes: " + projectList[i].notes;
+        projectList[i].notes;
+    }
+    if (projectList[i].dueDate === "") {
+      document.getElementsByClassName("userProjectDueDate")[i].innerHTML = "";
+    } else {
+      document.getElementsByClassName("userProjectDueDate")[i].innerHTML =
+        "Due: " + projectList[i].dueDate;
+    }
+    if (projectList[i].priority === "-") {
+      document.getElementsByClassName("userProjectPriority")[i].innerHTML = "";
+    } else {
+      document.getElementsByClassName("userProjectPriority")[i].innerHTML =
+        projectList[i].priority;
     }
 
     // Mark Project as done within the All Projects Page
@@ -218,11 +233,18 @@ const oneProjectView = () => {
   let parent = document.getElementById("newProjectDiv");
   let children = parent.getElementsByClassName("userProjectList");
   for (let c = 0; c < children.length; c++) {
-    children[c].style.display = "none";
+    children[c].style.visibility = "hidden";
   }
+  //   let oneProjectParentDiv = document.getElementById("oneProjectDiv");
+  //   let oneProjectChildren =
+  //     oneProjectParentDiv.getElementsByClassName("oneProjectView");
+  //   for (let p = 0; p < oneProjectChildren.length; p++) {
+  //     oneProjectChildren[p].style.visibility = "visible";
+  //   }
 
   // Project Header
   createNewDiv("projectHeader", "oneProjectDiv");
+  setClassAttr("projectHeader", "oneProjectView");
 
   // Add in the completed/not completed checkbox
   createNewDiv("checkBox", "projectHeader");
@@ -256,6 +278,7 @@ const oneProjectView = () => {
 
   // Project Body
   createNewDiv("projectBody", "oneProjectDiv");
+  setClassAttr("projectBody", "oneProjectView");
 
   // 1st Section
   createNewDiv("sections", "projectBody");
