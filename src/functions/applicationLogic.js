@@ -5,6 +5,7 @@ import {
   addLi,
   addText,
   addUl,
+  createHr,
   createNewDiv,
   setClassAttr,
 } from "./DOMlogic";
@@ -16,15 +17,35 @@ let globalNotesText;
 let globalDate;
 let globalPriority;
 let taskCount = 0;
+let textCount = 0;
+let completeCount = 0;
+let closeCount = 0;
 
 // Create Tasks
 const newTask = () => {
   taskCount++;
+  textCount++;
+  completeCount++;
+  closeCount++;
   let taskId = `individualSubtask${taskCount}`;
-  addLi(taskId, "subtasks");
+  let textId = `individualTxt${textCount}`;
+  let completeId = `individualComplete${completeCount}`;
+  let closeId = `individualClose${closeCount}`;
+
+  createNewDiv(taskId, "subtasks");
   setClassAttr(taskId, "subtaskClass");
-  addText(taskId, "[Insert Text]");
-  document.getElementById(taskId).contentEditable = "true";
+
+  createNewDiv(completeId, taskId);
+  setClassAttr(completeId, "subtaskCompleteClass");
+
+  createNewDiv(textId, taskId);
+  addText(textId, "[Insert Text]");
+  setClassAttr(textId, "subtaskTextClass");
+  document.getElementById(textId).contentEditable = "true";
+
+  createNewDiv(closeId, taskId);
+  setClassAttr(closeId, "subtaskCloseClass")
+  addText(closeId, "X");
 };
 
 // Create new Section
@@ -259,8 +280,12 @@ const oneProjectView = () => {
   //     oneProjectChildren[p].style.visibility = "visible";
   //   }
 
+  // Parent Div
+  createNewDiv("projectParent", "oneProjectDiv");
+  setClassAttr("projectParent", "oneProjectView");
+
   // Project Header
-  createNewDiv("projectHeader", "oneProjectDiv");
+  createNewDiv("projectHeader", "projectParent");
   setClassAttr("projectHeader", "oneProjectView");
 
   // Add in the completed/not completed checkbox
@@ -305,8 +330,10 @@ const oneProjectView = () => {
   let backBtn = document.getElementById("backBtn");
   backBtn.onclick = backFunction;
 
+  createNewDiv("horizontalRuler2", "projectParent");
+
   // Project Body
-  createNewDiv("projectBody", "oneProjectDiv");
+  createNewDiv("projectBody", "projectParent");
   setClassAttr("projectBody", "oneProjectView");
 
   // 1st Section
