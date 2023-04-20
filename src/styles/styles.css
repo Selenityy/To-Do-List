@@ -419,66 +419,97 @@ input[type="date"] {
 
 #oneProjectDiv {
   position: absolute;
-  margin-left: 35px;
-  margin-top: 10px;
+  margin-left: 5%;
+  margin-top: 2%;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 70%;
+}
+
+#projectParent {
+  background-color: white;
+  border-radius: 8px;
+  outline: 1px solid black;
+  border: 4px dashed rgba(248, 122, 172, 07);
+  outline-offset: 6px;
+  padding: 25px;
 }
 
 #projectHeader {
   display: grid;
-  grid-template-columns: min-content 0.5fr max-content;
+  grid-template-columns: min-content 1fr max-content;
   grid-template-rows: 40px 40px;
-  padding-top: 10px;
+  /* padding: 10px; */
+  padding-bottom: 20px;
   width: 100%;
-  column-gap: 10px;
+  column-gap: 25px;
+  align-items: center;
   grid-template-areas:
     "box title date"
     "back description priority";
 }
 
+#horizontalRuler2 {
+  /* border-top: 5px dotted rgb(248, 122, 172); */
+  border-top: 4px solid #d8bfd8;
+  border-bottom: none;
+  /* margin-left: 5px;
+  margin-right: 5px; */
+}
+
 #checkBox {
   grid-area: box;
+  height: 45px;
+  width: 45px;
 }
 
 #projectTitle {
   grid-area: title;
   font-family: "ShantellMed";
-  font-size: 1.4rem;
+  font-size: 1.75rem;
 }
 
 #projectDescription {
   grid-area: description;
   font-family: "ShantellReg";
+  font-size: 1.3rem;
+  font-style: italic;
 }
 
 #projectDueDate {
   grid-area: date;
   font-family: "ShantellReg";
+  font-size: 1.3rem;
 }
 
 #projectPriority {
   grid-area: priority;
   font-family: "ShantellReg";
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: center;
 }
 
 #backBtn {
   grid-area: back;
   font-family: "ShantellReg";
-  font-size: 2rem;
+  font-size: 2.5rem;
   border: none;
   background-color: transparent;
+  padding-top: 20px;
 }
 
 #projectBody {
   display: flex;
   flex-direction: column;
   font-family: "ShantellReg";
+  padding-top: 20px;
+  /* padding: 10px; */
 }
 
 #sections {
-  font-family: "ShantellReg";
+  font-family: "ShantellMed";
+  font-size: 1.5rem;
   /* display: grid;
   grid-template-columns: repeat(5, 300px);
   grid-auto-flow: column;
@@ -488,13 +519,47 @@ input[type="date"] {
 #subtasks {
   display: grid;
   grid-auto-flow: row;
+  grid-auto-rows: 40px;
+  /* grid-template-rows: repeat(1, 40px); */
   width: 100%;
+  align-items: center;
   list-style-position: inside;
+  padding-top: 5px;
+  padding-bottom: 10px;
 }
 
 .subtaskClass {
   font-family: "ShantellReg";
-  text-indent: 20px;
+  /* text-indent: 20px; */
+  font-size: 1.2rem;
+  /* display: flex;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: min-content 1fr max-content;
+  grid-template-rows: 25px;
+  grid-template-areas: "complete text close";
+  align-items: center;
+  padding-left: 20px;
+}
+
+.subtaskCompleteClass {
+  grid-area: complete;
+  background-image: url(../assets/emptyCircle.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 15px;
+  width: 15px;
+}
+
+.subtaskTextClass {
+  grid-area: text;
+  font-size: 1.2rem;
+  padding-left: 15px;
+}
+
+.subtaskCloseClass {
+  grid-area: close;
+  font-size: 1rem;
 }
 
 #newSubtaskBtn {
@@ -503,16 +568,24 @@ input[type="date"] {
   justify-content: center;
   border-radius: 12px;
   font-family: "ShantellReg";
-  width: 115px;
-  height: 30px;
+  font-size: 1rem;
+  background-color: #d8bfd8;
+  width: 105px;
+  height: 28px;
+  border: 1px solid #adadad;
 }
 
 #projectNoteH2 {
-  font-family: "ShantellReg";
+  font-family: "ShantellMed";
+  padding-top: 20px;
+  font-size: 1.3rem;
 }
 
 #projectNotes {
   font-family: "ShantellReg";
+  padding-top: 10px;
+  font-size: 1.2rem;
+  padding-left: 3%;
 }
 
 /* --------- FOOTER --------- */
