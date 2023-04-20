@@ -1,6 +1,13 @@
 import { myProjects } from "./modal";
 import { createModal } from "./modal";
-import { addBtn, addLi, addText, createNewDiv, setClassAttr } from "./DOMlogic";
+import {
+  addBtn,
+  addLi,
+  addText,
+  addUl,
+  createNewDiv,
+  setClassAttr,
+} from "./DOMlogic";
 
 let globalChildId;
 let globalParentId;
@@ -8,16 +15,22 @@ let globalDescriptionText;
 let globalNotesText;
 let globalDate;
 let globalPriority;
+let taskCount = 0;
 
 // Create Tasks
 const newTask = () => {
-  console.log("Here is a new task");
+  taskCount++;
+  let taskId = `individualSubtask${taskCount}`;
+  addLi(taskId, "subtasks");
+  setClassAttr(taskId, "subtaskClass");
+  addText(taskId, "[Insert Text]");
+  document.getElementById(taskId).contentEditable = "true";
 };
 
 // Create new Section
-const newSection = () => {
-  console.log("Here is a new section");
-};
+// const newSection = () => {
+//   console.log("Here is a new section");
+// };
 
 // Completed Project from One Project View
 const completedProject = (projectClickedNameStr, oneProjectViewCheckBoxDiv) => {
@@ -298,20 +311,23 @@ const oneProjectView = () => {
 
   // 1st Section
   createNewDiv("sections", "projectBody");
+  //   createNewDiv("sectionTitle", "sections");
   addText("sections", "To Dos");
-  document.getElementById("sections").contentEditable = "true";
+  //   document.getElementById("sections").contentEditable = "true";
+
+  // Create Sections
+  //   addBtn("newSectionBtn", "sections");
+  //   addText("newSectionBtn", "+ Add Section");
+  //   let newSectionBtn = document.getElementById("newSectionBtn");
+  //   newSectionBtn.onclick = newSection;
 
   // Create Subtasks
+  addUl("subtasks", "projectBody");
+
   addBtn("newSubtaskBtn", "projectBody");
   addText("newSubtaskBtn", "+ Add Task");
   let newTaskBtn = document.getElementById("newSubtaskBtn");
   newTaskBtn.onclick = newTask;
-
-  // Create Sections
-  addBtn("newSectionBtn", "projectBody");
-  addText("newSectionBtn", "+ Add Section");
-  let newSectionBtn = document.getElementById("newSectionBtn");
-  newSectionBtn.onclick = newSection;
 
   // Use project notes
   createNewDiv("projectNoteH2", "projectBody");
@@ -339,12 +355,6 @@ function listenForClickOnProject() {
       globalDate = dateChild.textContent;
       let priorityChild = parent.children[7];
       globalPriority = priorityChild.textContent;
-      console.log(globalChildId);
-      console.log(globalParentId);
-      console.log(globalDescriptionText);
-      console.log(globalNotesText);
-      console.log(globalDate);
-      console.log(globalPriority);
       oneProjectView();
     });
   });
