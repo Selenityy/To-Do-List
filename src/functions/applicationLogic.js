@@ -9,6 +9,8 @@ import {
   createNewDiv,
   setClassAttr,
 } from "./DOMlogic";
+import coloredCircle from "../assets/coloredCircle.png";
+import emptyCircle from "../assets/emptyCircle.png";
 
 let globalChildId;
 let globalParentId;
@@ -37,6 +39,23 @@ const newTask = () => {
 
   createNewDiv(completeId, taskId);
   setClassAttr(completeId, "subtaskCompleteClass");
+  let completionElements = document.querySelectorAll(".subtaskCompleteClass");
+  completionElements.forEach(function (completionElement) {
+    completionElement.addEventListener("click", function (event) {
+      let div = document.getElementById(event.target.id);
+      let parent = event.target.parentNode;
+      let textDiv = parent.children[1];
+      let text = textDiv.textContent;
+      let style = getComputedStyle(textDiv).getPropertyValue("text-decoration");
+      if (style.includes("line-through")) {
+        textDiv.style.setProperty("text-decoration", "none");
+        div.style.setProperty("background-image", `url(${emptyCircle})`);
+      } else {
+        textDiv.style.setProperty("text-decoration", "line-through");
+        div.style.setProperty("background-image", `url(${coloredCircle})`);
+      }
+    });
+  });
 
   createNewDiv(textId, taskId);
   addText(textId, "[Insert Text]");
