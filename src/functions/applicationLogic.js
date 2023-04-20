@@ -4,6 +4,10 @@ import { addBtn, addLi, addText, createNewDiv, setClassAttr } from "./DOMlogic";
 
 let globalChildId;
 let globalParentId;
+let globalDescriptionText;
+let globalNotesText;
+let globalDate;
+let globalPriority;
 
 // Create Tasks
 const newTask = () => {
@@ -269,6 +273,18 @@ const oneProjectView = () => {
   let childElement = document.getElementById(globalChildId);
   addText("projectTitle", childElement.textContent);
 
+  // Use the project description
+  createNewDiv("projectDescription", "projectHeader");
+  addText("projectDescription", globalDescriptionText);
+
+  // Use the project due date
+  createNewDiv("projectDueDate", "projectHeader");
+  addText("projectDueDate", globalDate);
+
+  // Use the project priority
+  createNewDiv("projectPriority", "projectHeader");
+  addText("projectPriority", globalPriority);
+
   // Attach a back button
   addBtn("backBtn", "projectHeader");
   setClassAttr("backBtn", "backBtn");
@@ -296,6 +312,13 @@ const oneProjectView = () => {
   addText("newSectionBtn", "+ Add Section");
   let newSectionBtn = document.getElementById("newSectionBtn");
   newSectionBtn.onclick = newSection;
+
+  // Use project notes
+  createNewDiv("projectNoteH2", "projectBody");
+  let projectNotesAdded = "Notes:" + " ";
+  addText("projectNoteH2", projectNotesAdded);
+  createNewDiv("projectNotes", "projectBody");
+  addText("projectNotes", globalNotesText);
 };
 
 // listener event for the project divs to be clicked to show one project view
@@ -308,6 +331,20 @@ function listenForClickOnProject() {
       globalChildId = event.target.id;
       let parent = event.target.parentNode;
       globalParentId = parent.id;
+      let descriptionChild = parent.children[4];
+      globalDescriptionText = descriptionChild.textContent;
+      let notesChild = parent.children[5];
+      globalNotesText = notesChild.textContent;
+      let dateChild = parent.children[6];
+      globalDate = dateChild.textContent;
+      let priorityChild = parent.children[7];
+      globalPriority = priorityChild.textContent;
+      console.log(globalChildId);
+      console.log(globalParentId);
+      console.log(globalDescriptionText);
+      console.log(globalNotesText);
+      console.log(globalDate);
+      console.log(globalPriority);
       oneProjectView();
     });
   });
