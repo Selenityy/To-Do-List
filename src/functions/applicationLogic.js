@@ -44,7 +44,7 @@ const newTask = () => {
   document.getElementById(textId).contentEditable = "true";
 
   createNewDiv(closeId, taskId);
-  setClassAttr(closeId, "subtaskCloseClass")
+  setClassAttr(closeId, "subtaskCloseClass");
   addText(closeId, "X");
 };
 
@@ -253,7 +253,8 @@ const addProjectToPage = (projectList) => {
     let removeBtn = document.getElementById(`newProjectRemoveBtn${i}`);
     removeBtn.onclick = function (removeEvent) {
       const deleteProject =
-        removeEvent.target.parentElement.children[2].innerHTML;
+        removeEvent.target.parentElement.children[3].innerHTML;
+      console.log(deleteProject);
       myProjects = projectList.filter(
         (project) => project.name !== deleteProject
       );
