@@ -199,7 +199,7 @@ li.userProjectLi::before {
 .userProjectList {
   display: grid;
   grid-template-columns: auto repeat(2, min-content);
-  grid-template-rows: 40px min-content 30px 106px 20px;
+  grid-template-rows: 40px min-content 30px 90px 30px;
   grid-template-areas:
     "box details close"
     "projectTitle projectTitle projectTitle"
@@ -236,16 +236,22 @@ li.userProjectLi::before {
 .userProjectDueDate {
   grid-area: projectDueDate;
   font-size: 1rem;
+  display: flex;
+  align-items: flex-end;
+
 }
 
 .userProjectPriority {
   grid-area: projectPriority;
   font-size: 1rem;
+  display: flex;
+  align-items: flex-end;
 }
 
 .userProjectNotes {
   grid-area: projectNotes;
   font-size: 1rem;
+  overflow: scroll;
 }
 
 .userProjectNotes,
