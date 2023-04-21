@@ -1,14 +1,4 @@
-import {
-  createNewDiv,
-  setClassAttr,
-  addText,
-  addImg,
-  addBtn,
-  addUl,
-  addLi,
-  addEventListClick,
-  addHref,
-} from "../functions/DOMlogic";
+import { createNewDiv, setClassAttr, addHref } from "../functions/DOMlogic";
 
 export default function footer() {
   createNewDiv("footerElements", "footer");

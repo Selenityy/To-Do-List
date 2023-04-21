@@ -6,6 +6,13 @@ const createNewDiv = (newDivId, parentDivId) => {
   parentDiv.appendChild(newDiv);
 };
 
+// const createNewInput = (newInputId, parentDivId) => {
+//     let parentDiv = document.getElementById(parentDivId);
+//     let newInput = document.createElement("input");
+//     newInput.setAttribute("type", newInputId);
+//     parentDiv.appendChild(newInput);
+// }
+
 // Set Class Attribute
 const setClassAttr = (divId, classList) => {
   let div = document.getElementById(divId);

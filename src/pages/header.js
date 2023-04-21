@@ -3,8 +3,6 @@ import {
   setClassAttr,
   addText,
   createImg,
-  addBtn,
-  addEventListClick,
 } from "../functions/DOMlogic";
 import logo from "../assets/logo.png";
 

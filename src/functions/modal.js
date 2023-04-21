@@ -79,7 +79,9 @@ const createModal = () => {
     this.priority = priority;
     this.notes = notes;
     this.completed = false;
+    this.subtasks = [];
   }
+
 
   // Submit Btn triggers the following: grabs values, adds to Project Obj
   let submitBtn = document.getElementById("submitBtn");
@@ -107,8 +109,7 @@ const createModal = () => {
         ? ""
         : document.getElementById("description").value;
     const formSubmissionNewProjectDueDate =
-      dateFormat(document.getElementById("dueDate").value) ===
-      "Invalid Date"
+      dateFormat(document.getElementById("dueDate").value) === "Invalid Date"
         ? ""
         : dateFormat(document.getElementById("dueDate").value);
     const formSubmissionNewProjectPriority =

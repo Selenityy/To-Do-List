@@ -23,8 +23,15 @@ let textCount = 0;
 let completeCount = 0;
 let closeCount = 0;
 
+function Subtask(completed, name) {
+  this.completed = completed;
+  this.name = name;
+}
+
 // Create Tasks
-const newTask = () => {
+const newTask = (event) => {
+  let titleStr = globalParentId.replace(/-/g, " ");
+  let currentProject = myProjects.find((project) => project.name === titleStr);
   taskCount++;
   textCount++;
   completeCount++;
@@ -39,32 +46,58 @@ const newTask = () => {
 
   createNewDiv(completeId, taskId);
   setClassAttr(completeId, "subtaskCompleteClass");
-  let completionElements = document.querySelectorAll(".subtaskCompleteClass");
-  completionElements.forEach(function (completionElement) {
-    completionElement.addEventListener("click", function (event) {
-      let div = document.getElementById(event.target.id);
-      let parent = event.target.parentNode;
-      let textDiv = parent.children[1];
-      let text = textDiv.textContent;
-      let style = getComputedStyle(textDiv).getPropertyValue("text-decoration");
-      if (style.includes("line-through")) {
-        textDiv.style.setProperty("text-decoration", "none");
-        div.style.setProperty("background-image", `url(${emptyCircle})`);
-      } else {
-        textDiv.style.setProperty("text-decoration", "line-through");
-        div.style.setProperty("background-image", `url(${coloredCircle})`);
-      }
-    });
+  let completionElement = document.getElementById(completeId);
+  completionElement.addEventListener("click", function (event) {
+    let circle = document.getElementById(event.target.id);
+    let parent = event.target.parentNode;
+    let textDiv = parent.children[1];
+    let subtaskId = textDiv.getAttribute("subtaskId") - 1;
+    //   let text = textDiv.value;
+    let style = getComputedStyle(textDiv).getPropertyValue("text-decoration");
+    if (style.includes("line-through")) {
+      textDiv.style.setProperty("text-decoration", "none");
+      circle.style.setProperty("background-image", `url(${emptyCircle})`);
+      currentProject.subtasks[subtaskId].completed = false;
+      localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
+    } else {
+      textDiv.style.setProperty("text-decoration", "line-through");
+      circle.style.setProperty("background-image", `url(${coloredCircle})`);
+      currentProject.subtasks[subtaskId].completed = true;
+      localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
+    }
   });
 
-  createNewDiv(textId, taskId);
-  addText(textId, "[Insert Text]");
+  let parentDiv = document.getElementById(taskId);
+  let newInput = document.createElement("input");
+  newInput.setAttribute("id", textId);
+  newInput.setAttribute("type", "text");
+  newInput.setAttribute("placeholder", "[Insert Text]");
+  newInput.setAttribute("subtaskId", taskCount);
+  parentDiv.appendChild(newInput);
   setClassAttr(textId, "subtaskTextClass");
-  document.getElementById(textId).contentEditable = "true";
+
+  const subtask = new Subtask(false, "[Insert Text]");
+  currentProject.subtasks.push(subtask);
+  localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
+
+  newInput.addEventListener("change", function (event) {
+    let subtaskId = event.target.getAttribute("subtaskId") - 1;
+    currentProject.subtasks[subtaskId].name = event.target.value;
+    localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
+  });
 
   createNewDiv(closeId, taskId);
   setClassAttr(closeId, "subtaskCloseClass");
   addText(closeId, "X");
+  let closeElement = document.getElementById(closeId);
+  closeElement.addEventListener("click", function (event) {
+    let parent = event.target.parentNode;
+    let textDiv = parent.children[1];
+    let subtaskId = textDiv.getAttribute("subtaskId") - 1;
+    currentProject.subtasks.splice(subtaskId, 1);
+    parent.remove();
+    localStorage.setItem(`myProjects`, JSON.stringify(myProjects));
+  });
 };
 
 // Create new Section
